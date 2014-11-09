@@ -1,10 +1,10 @@
-package Tests;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class LiftTest {
+public class ElevatorTest {
 
 	@Test
 	public void test() {
