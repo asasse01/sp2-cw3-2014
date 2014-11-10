@@ -1,7 +1,8 @@
 
 public class Elevator {
 	private int NUM_OF_FLOORS;
-	private Customer[] registerList;
+	private Customer[] registerList; // This should be an arrayList and not an array
+	//https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
 	private int currentFloor;
 	private int direction; // -1 0 +1
 	
