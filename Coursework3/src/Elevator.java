@@ -38,7 +38,24 @@ public class Elevator {
 	}
 	
 	public static void move(){
-		
+	//Switch (direction) 
+	//Case -1:
+	//    Floor - 1
+	//    break
+	//Case 1:
+	//    Floor + 1	
+	//    break
+	}
+	
+	public static void switchDirection(){
+	//Switch (currentFloor) 
+	//Case maxFloor:
+	//    Direction = -1
+	//Case minFloor:
+	//    Direction = +1
+	
+	//FI: will also need to switch if no customers are present at lower or higher floors 
+
 	}
 	
 }
