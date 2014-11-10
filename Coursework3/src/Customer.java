@@ -4,8 +4,9 @@ public class Customer {
 	private int currentFloor;
 	private int destinationFloor;
 	private int Id;
-	private boolean inElevator;
-	private boolean finish;
+	private boolean inElevator = false;
+	private boolean finish = false;
+	private static int customerCounter = 0;
 	
 	public int getCurrentFloor() {
 		return currentFloor;
@@ -24,8 +25,17 @@ public class Customer {
 	public int getId() {
 		return Id;
 	}
-	public void setId(int id) {
-		Id = id;
+	public void setId() {
+		Id = getCustomerCounter();
+		setCustomerCounter();
+	}
+	
+	public int getCustomerCounter(){
+		return customerCounter;
+	}
+	
+	public void setCustomerCounter(){
+		customerCounter++;
 	}
 	public boolean isInElevator() {
 		return inElevator;

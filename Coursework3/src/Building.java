@@ -1,11 +1,39 @@
+import java.util.ArrayList;
+
 
 public class Building {
 	
 	private int numberOfFloors;
-	private int numberOfCustomers;
-	private Customer[] customerList;
+	private static int numberOfCustomers;
+	private static ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator e;
+	
+	/* NOTES:
+	 * not sure about using static everywhere
+	 * we might need to extrapolate generateCustomers()  into its own class
+	 */
 
+	public static void main(String[] args){
+		setNumberOfCustomers();
+		generateCustomers();
+	}
+	
+
+	public static void generateCustomers(){ 
+
+		while (customerList.size() != getNumberOfCustomers()){
+			Customer customer = new Customer();
+			customer.setId();
+			// a.setCurrentFloor();
+			// a.setDestinationFloor();
+			customerList.add(customer);
+		}
+	}
+	
+	public ArrayList<Customer> getListOfCustomers(){
+		return customerList;
+	}
+	
 	public int getNumberOfFloors() {
 		return numberOfFloors;
 	}
@@ -20,27 +48,18 @@ public class Building {
 		this.numberOfFloors = numberOfFloors;
 	}
 	
-	public int getNumberOfCustomers(){
+	public static int getNumberOfCustomers(){
 		return numberOfCustomers;
 	}
 	
-	public void setNumberOfcustomers() {
+	public static void setNumberOfCustomers() {
 		// default
-		this.numberOfCustomers = 10;
+		numberOfCustomers = 10;
 	}
 
 	public void setNumberOfCustomers(int numberOfCustomers) {
 		// User should choose
-		this.numberOfCustomers = numberOfFloors;
+		this.numberOfCustomers = numberOfCustomers;
 	}
-
-	private Customer[] getCustomerList() {
-		return customerList;
-	}
-
-	private void setCustomerList(Customer[] customerList) {
-		this.customerList = customerList;
-	}
-
 
 }
