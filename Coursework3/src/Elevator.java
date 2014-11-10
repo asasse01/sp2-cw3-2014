@@ -1,10 +1,21 @@
+import java.util.ArrayList;
+
 
 public class Elevator {
 	private int NUM_OF_FLOORS;
-	private Customer[] registerList; // This should be an arrayList and not an array
-	//https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
-	private int currentFloor;
+	private int currentFloor; // random
 	private int direction; // -1 0 +1
+	ArrayList<Customer> registerList = new ArrayList<Customer>();
+
+	
+	public Elevator(int numberOfFloors){
+		NUM_OF_FLOORS = numberOfFloors;
+		direction = 0;
+	}
+
+	public int getNumberOfFloors(){
+		return NUM_OF_FLOORS;
+	}
 	
 	public int getCurrentFloor() {
 		return currentFloor;
