@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class Building {
 	
-	private int numberOfFloors;
+	private static int numberOfFloors;
 	private static int numberOfCustomers;
 	private static ArrayList<Customer> customerList = new ArrayList<Customer>();
-	private Elevator e;
+	private Elevator e = new Elevator(getNumberOfFloors());
 	
 	/* NOTES:
 	 * not sure about using static everywhere
@@ -16,6 +16,11 @@ public class Building {
 	public static void main(String[] args){
 		setNumberOfCustomers();
 		generateCustomers();
+	}
+	
+	public Elevator getElevator(){
+		System.out.println("elevator");
+		return e;
 	}
 	
 
@@ -34,18 +39,18 @@ public class Building {
 		return customerList;
 	}
 	
-	public int getNumberOfFloors() {
+	public static int getNumberOfFloors() {
 		return numberOfFloors;
 	}
 	
 	public void setNumberOfFloors() {
 		// default
-		this.numberOfFloors = 10;
+		numberOfFloors = 10;
 	}
 
 	public void setNumberOfFloors(int numberOfFloors) {
 		// User should choose
-		this.numberOfFloors = numberOfFloors;
+		Building.numberOfFloors = numberOfFloors;
 	}
 	
 	public static int getNumberOfCustomers(){
@@ -59,7 +64,7 @@ public class Building {
 
 	public void setNumberOfCustomers(int numberOfCustomers) {
 		// User should choose
-		this.numberOfCustomers = numberOfCustomers;
+		Building.numberOfCustomers = numberOfCustomers;
 	}
 
 }
