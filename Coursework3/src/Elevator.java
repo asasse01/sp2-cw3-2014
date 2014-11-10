@@ -30,11 +30,11 @@ public class Elevator {
 	
 	
 	public static void customerJoins(){
-		
+	// appends customer to registerList[]
 	}
 	
 	public static void customerLeaves(){
-		
+	// removes customer to registerList[]
 	}
 	
 	public static void move(){
