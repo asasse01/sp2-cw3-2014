@@ -50,4 +50,11 @@ public class Customer {
 		this.finish = finish;
 	}
 	
+	public void getsIn(){
+		
+	}
+	public void getsOut(){
+		
+	}
+	
 }

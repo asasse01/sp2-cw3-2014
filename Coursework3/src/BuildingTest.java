@@ -15,6 +15,8 @@ public class BuildingTest {
     	b.setNumberOfFloors();
     	assertEquals(10, b.getNumberOfFloors());
 	}
+	
+	// to test adding customers
 }
 
 
