@@ -13,13 +13,7 @@ public class Building {
 	 * we might need to extrapolate generateCustomers()  into its own class
 	 */
 
-	public static void main(String[] args){
-		setNumberOfCustomers();
-		generateCustomers();
-	}
-	
-
-	public static void generateCustomers(){ 
+	public void generateCustomers(){ 
 
 		while (customerList.size() != getNumberOfCustomers()){
 			Customer customer = new Customer();
@@ -52,7 +46,7 @@ public class Building {
 		return numberOfCustomers;
 	}
 	
-	public static void setNumberOfCustomers() {
+	public void setNumberOfCustomers() {
 		// default
 		numberOfCustomers = 10;
 	}
