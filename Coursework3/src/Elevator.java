@@ -64,13 +64,16 @@ public class Elevator {
 		registerList.add(cust);
 		
 	}
-//	public static void customerGetsOut(Customer cust){
-//		registerList.remove(cust);
-//		// to be remove by id
-//	}
+	public static void customerGetsOut(Customer cust){
+		registerList.remove(cust);
+	}
 	
 	public static int getNumberOfCustomers(){
 		return registerList.size();
+	}
+	
+	public static ArrayList<Customer> getRegisterList(){
+		return registerList;
 	}
 	
 	
