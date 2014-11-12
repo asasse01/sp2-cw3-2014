@@ -7,13 +7,22 @@ import org.junit.Test;
 public class ElevatorTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void customerGetsIn() {
+		Customer c = new Customer();
+		assertEquals(0, Elevator.getNumberOfCustomers());
+		Elevator.customerGetsIn(c);
+		assertEquals(1, Elevator.getNumberOfCustomers());
+		
 	}
 	
 	@Test
-	public void moveTest() {
-		fail("Not yet implemented");
+	public void customerGetsOut() {
+		
 	}
+	
+//	@Test
+//	public void moveTest() {
+//		fail("Not yet implemented");
+//	}
 
 }
