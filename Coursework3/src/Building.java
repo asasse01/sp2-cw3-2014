@@ -13,19 +13,14 @@ public class Building {
 	 * we might need to extrapolate generateCustomers()  into its own class
 	 */
 
-	public void generateCustomers(){ 
-
-		while (customerList.size() != getNumberOfCustomers()){
-			Customer customer = new Customer();
-			customer.setId();
-			// a.setCurrentFloor();
-			// a.setDestinationFloor();
-			customerList.add(customer);
-		}
+	
+	
+	public ArrayList<Customer> getCustomerList(){
+		return customerList;
 	}
 	
-	public ArrayList<Customer> getListOfCustomers(){
-		return customerList;
+	public void addCustomer(Customer c){
+		customerList.add(c);
 	}
 	
 	public int getNumberOfFloors() {
