@@ -16,15 +16,18 @@ public class BuildingTest {
     	assertEquals(10, b.getNumberOfFloors());
 	}
 	
-//	@Test
-//	public void setNumberOfCustomers(){
-//		Customer c = new Customer();
-//		c.setNumberOfCustomers(100);
-//    	assertEquals(100, c.getNumberOfCustomers());
-// 
-//    	c.setNumberOfCustomers();
-//    	assertEquals(10, c.getNumberOfCustomers());
-//	}
+	@Test
+	public void generateCustomers(){
+		Building b = new Building();
+		b.setNumberOfCustomers();
+		b.generateCustomers();
+		
+    	assertEquals(10, b.getListOfCustomers().size());
+    	assertEquals(0, b.getListOfCustomers().get(0).getId());
+    	assertEquals(3, b.getListOfCustomers().get(3).getId());
+    	assertEquals(7, b.getListOfCustomers().get(7).getId());
+    	assertEquals(9, b.getListOfCustomers().get(9).getId());
+	}
 }
 
 
