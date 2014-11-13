@@ -50,18 +50,15 @@ public class Elevator {
 	//FI: will also need to switch if no customers are present at lower or higher floors 
 
 	}
-	
 	public static void customerJoins(Customer cust){
 		registerList.add(cust);
 	}
 	public static void customerLeaves(Customer cust){
 		registerList.remove(cust);
 	}
-	
 	public static int getNumberOfCustomers(){
 		return registerList.size();
 	}
-	
 	public static ArrayList<Customer> getRegisterList(){
 		return registerList;
 	}

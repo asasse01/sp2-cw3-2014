@@ -43,10 +43,13 @@ public class Customer {
 	public void setInElevator(boolean inElevator) {
 		this.inElevator = inElevator;
 	}
-	public boolean isFinish() {
+	
+	// to rename
+	public boolean isFinished() {
 		return finish;
 	}
-	public void setFinish(boolean finish) {
+	// to rename
+	public void finish(boolean finish) {
 		this.finish = finish;
 	}
 	
@@ -54,11 +57,16 @@ public class Customer {
 		inElevator = true;
 	}
 	public void getsOut(){
+		finish(true);
 		inElevator = false;	
 	}
 	
 	public boolean getStatus(){
 		return inElevator;
 	}
+	
+	// check floor method 
+	// If customer is generated at end floor setFinished to true
+	// Without the need of going into the elevator
 	
 }

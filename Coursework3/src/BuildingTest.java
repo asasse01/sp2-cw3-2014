@@ -19,6 +19,7 @@ public class BuildingTest {
 	@Test
 	public void customerJoinsAndLeaves(){
 		Building b = new Building();
+		assertEquals(0, b.getCustomerList().size());
 		Customer c = new Customer();
 		b.addCustomer(c);
 		assertEquals(1, b.getCustomerList().size());
