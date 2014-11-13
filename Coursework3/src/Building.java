@@ -3,18 +3,15 @@ import java.util.ArrayList;
 
 public class Building {
 	
-	private int numberOfFloors;
-	private static int numberOfCustomers;
-	private static ArrayList<Customer> customerList = new ArrayList<Customer>();
-	private Elevator e;
+	// this could be an int arrayList, it'll make easy to avoid 13th floor
+	private int numberOfFloors; 
+	private int numberOfCustomers;
+	private ArrayList<Customer> customerList = new ArrayList<Customer>();
 	
 	/* NOTES:
-	 * not sure about using static everywhere
-	 * we might need to extrapolate generateCustomers()  into its own class
+	 * add class constructor with elevator
 	 */
 
-	
-	
 	public ArrayList<Customer> getCustomerList(){
 		return customerList;
 	}
@@ -37,7 +34,7 @@ public class Building {
 		this.numberOfFloors = numberOfFloors;
 	}
 	
-	public static int getNumberOfCustomers(){
+	public int getNumberOfCustomers(){
 		return numberOfCustomers;
 	}
 	
