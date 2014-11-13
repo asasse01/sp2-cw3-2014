@@ -51,10 +51,14 @@ public class Customer {
 	}
 	
 	public void getsIn(){
-		
+		inElevator = true;
 	}
 	public void getsOut(){
-		
+		inElevator = false;	
+	}
+	
+	public boolean getStatus(){
+		return inElevator;
 	}
 	
 }
