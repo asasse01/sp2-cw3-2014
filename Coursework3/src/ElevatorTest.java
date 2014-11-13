@@ -15,29 +15,18 @@ public class ElevatorTest {
 		c1.setId();
 		assertEquals(0, Elevator.getNumberOfCustomers());
 		// 2 customers get in
-		Elevator.customerGetsIn(c0);
-		Elevator.customerGetsIn(c1);
+		Elevator.customerJoins(c0);
+		Elevator.customerJoins(c1);
 		// tests the id of the 2 customers
 		assertEquals(0, c0.getId());
 		assertEquals(1, c1.getId());
 		// tests the number of customers inside the elevator
 		assertEquals(2, Elevator.getNumberOfCustomers());
 		// customer 0 gets out
-		Elevator.customerGetsOut(c0);
+		Elevator.customerLeaves(c0);
 		// tests the number of customers in elevator
 		assertEquals(1, Elevator.getNumberOfCustomers());
 		// tests if the customer remaining in the elevator is the correct one by his ID
 		assertEquals(1, Elevator.getRegisterList().get(0).getId());
 	}
-	
-	@Test
-	public void customerGetsOut() {
-		
-	}
-	
-//	@Test
-//	public void moveTest() {
-//		fail("Not yet implemented");
-//	}
-
 }

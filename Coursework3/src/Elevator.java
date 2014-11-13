@@ -30,15 +30,6 @@ public class Elevator {
 		this.direction = direction;
 	}
 	
-	
-	public static void customerJoins(){
-	// appends customer to registerList[]
-	}
-	
-	public static void customerLeaves(){
-	// removes customer to registerList[]
-	}
-	
 	public static void move(){
 	//Switch (direction) 
 	//Case -1:
@@ -60,11 +51,10 @@ public class Elevator {
 
 	}
 	
-	public static void customerGetsIn(Customer cust){
+	public static void customerJoins(Customer cust){
 		registerList.add(cust);
-		
 	}
-	public static void customerGetsOut(Customer cust){
+	public static void customerLeaves(Customer cust){
 		registerList.remove(cust);
 	}
 	
@@ -75,8 +65,6 @@ public class Elevator {
 	public static ArrayList<Customer> getRegisterList(){
 		return registerList;
 	}
-	
-	
 }
 
 
