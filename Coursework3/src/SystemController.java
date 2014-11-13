@@ -17,6 +17,7 @@ public class SystemController {
 			customer.setId();
 			// customer.setCurrentFloor();
 			// customer.setDestinationFloor();
+			System.out.println(customer.getId());
 			building.addCustomer(customer);
 		}
 	}

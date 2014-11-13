@@ -1,12 +1,21 @@
 
 public class Customer {
 	
+	private int startingFloor;
 	private int currentFloor;
 	private int destinationFloor;
 	private int Id;
 	private boolean inElevator = false;
 	private boolean finish = false;
 	private static int customerCounter = 0;
+	
+//	// startingFloor should be generated when Customer is created
+//	public void generateStartingFloor(){
+//		startingFloor = (int)(Math.random()*Building.getNumberOfFloors());
+//		destinationFloor = (int)(Math.random()*Building.getNumberOfFloors());
+//		System.out.println("Starting at:" + startingFloor);
+//		System.out.println("Ending at:" + destinationFloor);
+//	}
 	
 	public int getCurrentFloor() {
 		return currentFloor;
