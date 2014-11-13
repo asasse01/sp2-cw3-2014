@@ -3,7 +3,9 @@ import java.util.ArrayList;
 
 public class Building {
 	
-	private int numberOfFloors;
+	// this could be an int arrayList, it'll make easy to avoid 13th floor
+	private static int numberOfFloors; 
+	
 	private static int numberOfCustomers;
 	private static ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator e;
@@ -23,7 +25,7 @@ public class Building {
 		customerList.add(c);
 	}
 	
-	public int getNumberOfFloors() {
+	public static int getNumberOfFloors() {
 		return numberOfFloors;
 	}
 	

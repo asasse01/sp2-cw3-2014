@@ -15,6 +15,15 @@ public class BuildingTest {
     	b.setNumberOfFloors();
     	assertEquals(10, b.getNumberOfFloors());
 	}
+	
+	@Test
+	public void customerJoinsAndLeaves(){
+		Building b = new Building();
+		assertEquals(0, b.getCustomerList().size());
+		Customer c = new Customer();
+		b.addCustomer(c);
+		assertEquals(1, b.getCustomerList().size());
+	}
 }
 
 

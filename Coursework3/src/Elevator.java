@@ -1,8 +1,9 @@
+import java.util.ArrayList;
+
 
 public class Elevator {
 	private int NUM_OF_FLOORS;
-	private Customer[] registerList; // This should be an arrayList and not an array
-	//https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+	private static ArrayList<Customer> registerList = new ArrayList<Customer>();
 	private int currentFloor;
 	private int direction; // -1 0 +1
 	
@@ -29,15 +30,6 @@ public class Elevator {
 		this.direction = direction;
 	}
 	
-	
-	public static void customerJoins(){
-	// appends customer to registerList[]
-	}
-	
-	public static void customerLeaves(){
-	// removes customer to registerList[]
-	}
-	
 	public static void move(){
 	//Switch (direction) 
 	//Case -1:
@@ -58,7 +50,18 @@ public class Elevator {
 	//FI: will also need to switch if no customers are present at lower or higher floors 
 
 	}
-	
+	public static void customerJoins(Customer cust){
+		registerList.add(cust);
+	}
+	public static void customerLeaves(Customer cust){
+		registerList.remove(cust);
+	}
+	public static int getNumberOfCustomers(){
+		return registerList.size();
+	}
+	public static ArrayList<Customer> getRegisterList(){
+		return registerList;
+	}
 }
 
 
