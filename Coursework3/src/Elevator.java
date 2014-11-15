@@ -35,7 +35,7 @@ public class Elevator {
 	}
 	
 	public void move(){
-		switch (this.direction) {
+		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
 			    break;
@@ -45,15 +45,16 @@ public class Elevator {
 		}
 	}
 	
-	public static void switchDirection(){
-	//Switch (currentFloor) 
-	//Case maxFloor:
-	//    Direction = -1
-	//Case minFloor:
-	//    Direction = +1
+	public void switchDirection() {
+		switch (this.getDirection()) {
+		case -1:
+			this.setDirection(+1);
+		    break;
+		case 1:
+			this.setDirection(-1);	
+		    break;
+		}
 	
-	//FI: will also need to switch if no customers are present at lower or higher floors 
-
 	}
 	public static void customerJoins(Customer cust){
 		registerList.add(cust);
