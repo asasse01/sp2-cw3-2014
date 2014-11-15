@@ -47,6 +47,24 @@ public class ElevatorTest {
 		assertEquals(1, e1.getCurrentFloor());
 		assertEquals(0, e2.getCurrentFloor());
 
+	}
+	
+	@Test
+	public void switchDirection() {
+		Elevator e1 = new Elevator();
+		e1.setCurrentFloor();
+		// direction up
+		e1.setDirection(1);
+		e1.switchDirection();
+	
+		Elevator e2 = new Elevator();
+		e2.setCurrentFloor(10);
+		// direction down
+		e2.setDirection(-1);
+		e2.switchDirection();
+
+		assertEquals(-1, e1.getDirection());
+		assertEquals(1, e2.getDirection());
 
 	}
 }
