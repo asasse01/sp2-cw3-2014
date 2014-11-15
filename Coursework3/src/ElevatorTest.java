@@ -29,4 +29,24 @@ public class ElevatorTest {
 		// tests if the customer remaining in the elevator is the correct one by his ID
 		assertEquals(1, Elevator.getRegisterList().get(0).getId());
 	}
+	
+	@Test
+	public void move() {
+		Elevator e1 = new Elevator();
+		// direction up
+		e1.setDirection(1);
+		e1.setCurrentFloor(0);
+		e1.move();
+	
+		Elevator e2 = new Elevator();
+		e2.setCurrentFloor(1);
+		// direction down
+		e2.setDirection(-1);
+		e2.move();
+
+		assertEquals(1, e1.getCurrentFloor());
+		assertEquals(0, e2.getCurrentFloor());
+
+
+	}
 }

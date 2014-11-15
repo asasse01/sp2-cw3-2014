@@ -14,6 +14,10 @@ public class Elevator {
 	public void setCurrentFloor() {
 		// default
 		this.currentFloor = 0;
+	}	
+	
+	public void setCurrentFloor(int floor) {
+		this.currentFloor = floor;
 	}
 	
 	public int getDirection() {
@@ -30,7 +34,7 @@ public class Elevator {
 		this.direction = direction;
 	}
 	
-	public static void move(){
+	public void move(){
 	//Switch (direction) 
 	//Case -1:
 	//    Floor - 1
