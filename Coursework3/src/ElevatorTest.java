@@ -33,9 +33,9 @@ public class ElevatorTest {
 	@Test
 	public void move() {
 		Elevator e1 = new Elevator();
+		e1.setCurrentFloor();
 		// direction up
 		e1.setDirection(1);
-		e1.setCurrentFloor(0);
 		e1.move();
 	
 		Elevator e2 = new Elevator();

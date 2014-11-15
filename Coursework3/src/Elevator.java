@@ -35,13 +35,14 @@ public class Elevator {
 	}
 	
 	public void move(){
-	//Switch (direction) 
-	//Case -1:
-	//    Floor - 1
-	//    break
-	//Case 1:
-	//    Floor + 1	
-	//    break
+		switch (this.direction) {
+			case -1:
+				this.setCurrentFloor(getCurrentFloor()-1);
+			    break;
+			case 1:
+				this.setCurrentFloor(getCurrentFloor()+1);	
+			    break;
+		}
 	}
 	
 	public static void switchDirection(){
