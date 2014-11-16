@@ -7,6 +7,13 @@ public class Elevator {
 	private int currentFloor;
 	private int direction; // -1 0 +1
 	
+	public Elevator() {
+		//default
+		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
+		currentFloor = 0;
+		direction = 1;
+	}
+	
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
