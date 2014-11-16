@@ -22,24 +22,27 @@ public class SystemControllerTest {
 	@Test
 	public void defaultStrategy(){
 		
-		Building b1 = new Building();
+		Building b1 = SystemController.getBuilding();
 		Customer c1 = new Customer();
 		Customer c2 = new Customer();
 		Customer c3 = new Customer();
 		Elevator e1 = b1.getElevator();
-		
-		b1.addCustomer(c1);
-		b1.addCustomer(c2);
-		b1.addCustomer(c3);
+		e1.setDirection(1);
 		
 		c1.setDestinationFloor(5);
 		c2.setDestinationFloor(5);
 		c3.setDestinationFloor(8);
 
+		b1.addCustomer(c1);
+		b1.addCustomer(c2);
+		b1.addCustomer(c3);
+		System.out.println(b1.getCustomerList());
+	
 		SystemController.defaultStrategy();
-		assertEquals(0, e1.getNumberOfCustomers());
-		assertEquals(5, c1.getCurrentFloor());
-		assertEquals(5, c2.getCurrentFloor());
-		assertEquals(8, c3.getCurrentFloor());
+		System.out.println(c1.getCurrentFloor());
+		assertEquals(5, b1.getCustomerList().get(0).getCurrentFloor());
+		assertEquals(true, c1.isFinished());
+		assertEquals(true, c2.isFinished());
+		assertEquals(true, c3.isFinished());
 	}
 }
