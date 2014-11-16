@@ -80,18 +80,18 @@ public class Building {
 	
 	public void load() {
 		ArrayList<Customer> loadList = new ArrayList<Customer>();
-		for (Customer c : this.getCustomerList()) {
+		for (Customer customer : this.getCustomerList()) {
 			// customer joins if they are on the same floor as elevator
-			if (c.getCurrentFloor() == (this.getElevator().getCurrentFloor())) {
-			    if (!(c.isInElevator()) && (c.getDestinationFloor() != c.getCurrentFloor())) {
-					loadList.add(c);
+			if (customer.getCurrentFloor() == (this.getElevator().getCurrentFloor())) {
+			    if (!(customer.isInElevator()) && (customer.getDestinationFloor() != customer.getCurrentFloor())) {
+					loadList.add(customer);
 			    }
 			}
 		}
 		// customer joins after loop (to avoid concurrency error)
-	    for (Customer cToJoin : loadList) {
+	    for (Customer customer : loadList) {
 	    	//rename
-	    	this.getElevator().customerJoins(cToJoin);
+	    	this.getElevator().customerJoins(customer);
 	    }
 		loadList.clear();
 	}

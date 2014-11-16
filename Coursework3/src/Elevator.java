@@ -46,14 +46,14 @@ public class Elevator {
 		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
-				for (Customer c : registerList) {
-					c.setCurrentFloor(getCurrentFloor());
+				for (Customer customer : registerList) {
+					customer.setCurrentFloor(getCurrentFloor());
 				}
 			    break;
 			case 1:
 				this.setCurrentFloor(getCurrentFloor()+1);	
-				for (Customer c : registerList) {
-					c.setCurrentFloor(getCurrentFloor());
+				for (Customer customer : registerList) {
+					customer.setCurrentFloor(getCurrentFloor());
 				}
 			    break;
 		}
