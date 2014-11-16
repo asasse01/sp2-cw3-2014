@@ -20,7 +20,7 @@ public class SystemController {
 			customer.setId();
 			// customer.setCurrentFloor();
 			// customer.setDestinationFloor();
-			//System.out.println(customer.getId()); // to be removed
+			System.out.println(customer.getId()); // to be removed
 			building.addCustomer(customer);
 		}
 	}
@@ -32,7 +32,6 @@ public class SystemController {
 	public static int defaultStrategy() {
 		int count = 0;
 		Building building = getBuilding();
-		ArrayList<Customer> loadList = new ArrayList<Customer>();
 		boolean simulationFinished = false;
 		
 		do  {
@@ -47,27 +46,14 @@ public class SystemController {
 				do {
 				// customer gets out if at destination floor
 				building.getElevator().unload();
-				
-				// for every customer in building
-				for (Customer c : building.getCustomerList()) {
-					// customer joins if they are on the same floor as elevator
-					if (c.getCurrentFloor() == (building.getElevator().getCurrentFloor())) {
-					    if (!(c.isInElevator()) && (c.getDestinationFloor() != c.getCurrentFloor())) {
-							loadList.add(c);
-					    }
-					}
-				}
-				// customer joins after loop (to avoid concurrency error)
-			    for (Customer cust : loadList) {
-			    	//rename
-			    	building.getElevator().customerJoins(cust);
-			    }
-				loadList.clear();
-				System.out.println(building.getElevator().getRegisterList()); //to remove
-			count++;
-			building.getElevator().move();
-			} while ((building.getElevator().getCurrentFloor() > 0) && (building.getElevator().getCurrentFloor() < building.getNumberOfFloors()));			
-			building.getElevator().switchDirection();//TODO remove floorlist
+				// customer gets in if at same floor as elevator
+				building.load();
+
+				count++;
+				building.getElevator().move();
+				} while ((building.getElevator().getCurrentFloor() > 0) && (building.getElevator().getCurrentFloor() < building.getNumberOfFloors()));			
+			
+				building.getElevator().switchDirection();
 								
 			} else return count;
 		} while(true);
