@@ -33,37 +33,43 @@ public class SystemController {
 		int count = 0;
 		Building building = getBuilding();
 		ArrayList<Customer> loadList = new ArrayList<Customer>();
+		boolean simulationFinished = false;
 		
-		for (Customer customer : building.getCustomerList()) {
-			// method to check all customers are one destination floor
-			if (!(customer.isFinished())) {
-				//building.getElevator().switchDirection();//TODO remove floorlist
-				while (/*(building.getElevator().getCurrentFloor() >= 0) && */(building.getElevator().getCurrentFloor() < building.getNumberOfFloors())) {
-					// customer gets out if at destination floor
-					building.getElevator().unload();
-					
-					// for every customer in building
-					for (Customer c : building.getCustomerList()) {
-						// customer joins if they are on the same floor as elevator
-						if (c.getCurrentFloor() == (building.getElevator().getCurrentFloor())) {
-						    if (!(c.isInElevator()) && (c.getDestinationFloor() != c.getCurrentFloor())) {
-								loadList.add(c);
-						    }
-						}
-					}
-					// customer joins after loop (to avoid concurrency error)
-				    for (Customer cust : loadList) {
-				    	//rename
-				    	building.getElevator().customerJoins(cust);
-				    }
-					loadList.clear();
-					System.out.println(building.getElevator().getRegisterList()); //to remove
-				count++;
-				building.getElevator().move();
-				}
+		do  {
+			for (Customer customer : building.getCustomerList()) {
+	            // TODO method to check all customers are on destination floor
+	            if (!(customer.isFinished())) {
+	                simulationFinished = false;
+	            } else simulationFinished = true;
+	        }
+	
+			if (!simulationFinished) {
+				do {
+				// customer gets out if at destination floor
+				building.getElevator().unload();
 				
-			}
-		}
-		return count;
+				// for every customer in building
+				for (Customer c : building.getCustomerList()) {
+					// customer joins if they are on the same floor as elevator
+					if (c.getCurrentFloor() == (building.getElevator().getCurrentFloor())) {
+					    if (!(c.isInElevator()) && (c.getDestinationFloor() != c.getCurrentFloor())) {
+							loadList.add(c);
+					    }
+					}
+				}
+				// customer joins after loop (to avoid concurrency error)
+			    for (Customer cust : loadList) {
+			    	//rename
+			    	building.getElevator().customerJoins(cust);
+			    }
+				loadList.clear();
+				System.out.println(building.getElevator().getRegisterList()); //to remove
+			count++;
+			building.getElevator().move();
+			} while ((building.getElevator().getCurrentFloor() > 0) && (building.getElevator().getCurrentFloor() < building.getNumberOfFloors()));			
+			building.getElevator().switchDirection();//TODO remove floorlist
+								
+			} else return count;
+		} while(true);
 	}
 }
