@@ -12,7 +12,7 @@ public class Elevator {
 		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
 		currentFloor = 0;
 		direction = 1;
-		registerList = new ArrayList<Customer>();
+		//registerList = new ArrayList<Customer>();
 	}
 	
 	public int getCurrentFloor() {
@@ -71,10 +71,12 @@ public class Elevator {
 	
 	}
 	
-	public static void customerJoins(Customer cust){
+	public void customerJoins(Customer cust){
+		cust.getsIn();
 		registerList.add(cust);
 	}
-	public static void customerLeaves(Customer cust){
+	public void customerLeaves(Customer cust){
+		cust.getsOut();
 		registerList.remove(cust);
 	}
 	public static int getNumberOfCustomers(){
@@ -82,20 +84,7 @@ public class Elevator {
 	}
 	public static ArrayList<Customer> getRegisterList(){
 		return registerList;
-	}
-	
-	
-/*	public void load() {
-		//TODO: should this be in Building?
-		//TODO: add/amend method to only load customer if going in direction of destination floor
-		for (Customer c : Building.getCustomerList()) {
-			if (c.getCurrentFloor() == this.getCurrentFloor()) {
-			    if (!c.isInElevator()) {
-			    	customerJoins(c);
-			    }
-		}
-	} */
-	
+	}	
 	
 	public void unload() {
 		ArrayList<Customer> unloadList = new ArrayList<Customer>();

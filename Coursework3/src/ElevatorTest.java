@@ -68,18 +68,6 @@ public class ElevatorTest {
 
 	}
 	
-/*	@Test
-	public void load() {
-		Customer c1 = new Customer();
-		c1.setCurrentFloor(0);
-		// tests that there are no customers in the elevator to begin with
-		assertEquals(0, Elevator.getNumberOfCustomers());
-		
-		Elevator.load();
-		assertEquals(1, Elevator.getNumberOfCustomers());
-
-	}*/
-	
 	@Test
 	public void unload() {
 		Elevator e1 = new Elevator();
@@ -103,5 +91,6 @@ public class ElevatorTest {
 		assertEquals(0, e1.getNumberOfCustomers());
 		
 	}
+
 }
 
