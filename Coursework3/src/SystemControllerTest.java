@@ -21,24 +21,25 @@ public class SystemControllerTest {
 
 	@Test
 	public void defaultStrategy(){
-		Elevator e1 = new Elevator(); // should be new Building?
-
+		
+		Building b1 = new Building();
 		Customer c1 = new Customer();
 		Customer c2 = new Customer();
 		Customer c3 = new Customer();
-
+		Elevator e1 = b1.getElevator();
+		
+		b1.addCustomer(c1);
+		b1.addCustomer(c2);
+		b1.addCustomer(c3);
+		
 		c1.setDestinationFloor(5);
 		c2.setDestinationFloor(5);
 		c3.setDestinationFloor(8);
 
-		e1.customerJoins(c1);
-		e1.customerJoins(c2);
-		e1.customerJoins(c3);
-
-		// check starting number is correct
-		assertEquals(3, e1.getNumberOfCustomers());
-		
-		e1.defaultStrategy();
+		SystemController.defaultStrategy();
 		assertEquals(0, e1.getNumberOfCustomers());
+		assertEquals(5, c1.getCurrentFloor());
+		assertEquals(5, c2.getCurrentFloor());
+		assertEquals(8, c3.getCurrentFloor());
 	}
 }
