@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class BuildingTest {
 
-	@Test
+	/*@Test
 	public void setNumberOfFloors(){
 		Building b = new Building();
 		b.setNumberOfFloors(100);
@@ -23,6 +23,22 @@ public class BuildingTest {
 		Customer c = new Customer();
 		b.addCustomer(c);
 		assertEquals(1, b.getCustomerList().size());
+	}*/
+	
+	@Test
+	public void load() {
+		Building b = new Building();
+		Customer c1 = new Customer();
+		b.addCustomer(c1);
+		c1.setCurrentFloor(0);
+		c1.setDestinationFloor(2);
+
+		// tests that there are no customers in the elevator to begin with
+		assertEquals(0, b.getElevator().getNumberOfCustomers());
+		
+		b.load();
+		assertEquals(1, b.getElevator().getNumberOfCustomers());
+
 	}
 }
 
