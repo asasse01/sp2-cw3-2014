@@ -12,6 +12,7 @@ public class Elevator {
 		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
 		currentFloor = 0;
 		direction = 1;
+		registerList = new ArrayList<Customer>();
 	}
 	
 	public int getCurrentFloor() {
@@ -45,9 +46,15 @@ public class Elevator {
 		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
+				for (Customer c : registerList) {
+					c.setCurrentFloor(getCurrentFloor());
+				}
 			    break;
 			case 1:
 				this.setCurrentFloor(getCurrentFloor()+1);	
+				for (Customer c : registerList) {
+					c.setCurrentFloor(getCurrentFloor());
+				}
 			    break;
 		}
 	}
@@ -63,6 +70,7 @@ public class Elevator {
 		}
 	
 	}
+	
 	public static void customerJoins(Customer cust){
 		registerList.add(cust);
 	}
@@ -74,6 +82,33 @@ public class Elevator {
 	}
 	public static ArrayList<Customer> getRegisterList(){
 		return registerList;
+	}
+	
+	
+/*	public void load() {
+		//TODO: should this be in Building?
+		//TODO: add/amend method to only load customer if going in direction of destination floor
+		for (Customer c : Building.getCustomerList()) {
+			if (c.getCurrentFloor() == this.getCurrentFloor()) {
+			    if (!c.isInElevator()) {
+			    	customerJoins(c);
+			    }
+		}
+	} */
+	
+	
+	public void unload() {
+		ArrayList<Customer> unloadList = new ArrayList<Customer>();
+		for (Customer c : getRegisterList()) {
+			if (c.getCurrentFloor() == c.getDestinationFloor()) {
+				unloadList.add(c);
+			}
+		}
+		
+		for (Customer c : unloadList) {
+		    customerLeaves(c);
+		}
+
 	}
 }
 
