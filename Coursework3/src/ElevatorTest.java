@@ -67,4 +67,16 @@ public class ElevatorTest {
 		assertEquals(1, e2.getDirection());
 
 	}
+	
+	@Test
+	public void load() {
+		Customer c1 = new Customer();
+		c1.setCurrentFloor(0);
+		// tests that there are no customers in the elevator to begin with
+		assertEquals(0, Elevator.getNumberOfCustomers());
+		
+		Elevator.load();
+		assertEquals(1, Elevator.getNumberOfCustomers());
+
+	}
 }
