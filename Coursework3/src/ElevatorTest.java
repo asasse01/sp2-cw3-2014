@@ -68,7 +68,7 @@ public class ElevatorTest {
 
 	}
 	
-	@Test
+/*	@Test
 	public void load() {
 		Customer c1 = new Customer();
 		c1.setCurrentFloor(0);
@@ -78,5 +78,30 @@ public class ElevatorTest {
 		Elevator.load();
 		assertEquals(1, Elevator.getNumberOfCustomers());
 
+	}*/
+	
+	@Test
+	public void unload() {
+		Elevator e1 = new Elevator();
+		Customer c1 = new Customer();
+		Customer c2 = new Customer();
+
+		c1.setDestinationFloor(1);
+		c1.setDestinationFloor(2);
+
+		e1.customerJoins(c1);
+		e1.customerJoins(c2);
+
+		assertEquals(2, e1.getNumberOfCustomers());
+		// move elevator up by 1 floor
+		e1.move();
+		//e1.unload();
+		assertEquals(1, e1.getNumberOfCustomers());
+		// move elevator up by 1 floor
+		e1.move();
+		//e1.unload();
+		assertEquals(0, e1.getNumberOfCustomers());
+		
 	}
 }
+
