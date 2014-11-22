@@ -79,7 +79,7 @@ public class Elevator {
 		cust.getsOut();
 		registerList.remove(cust);
 	}
-	public static int getNumberOfCustomers(){
+	public int getNumberOfCustomers(){
 		return registerList.size();
 	}
 	public static ArrayList<Customer> getRegisterList(){

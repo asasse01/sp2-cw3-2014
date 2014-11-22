@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class BuildingTest {
 
-	/*@Test
+	@Test
 	public void setNumberOfFloors(){
 		Building b = new Building();
 		b.setNumberOfFloors(100);
@@ -23,7 +23,7 @@ public class BuildingTest {
 		Customer c = new Customer();
 		b.addCustomer(c);
 		assertEquals(1, b.getCustomerList().size());
-	}*/
+	}
 	
 	@Test
 	public void load() {
