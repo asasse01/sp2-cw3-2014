@@ -14,9 +14,10 @@ public class Customer {
 		inElevator = false;
 		startingFloor = pickRandomFloor(numberOfFloors);
 		destinationFloor = pickRandomFloor(numberOfFloors);
-//		finish = firstCheck();
+		finish = firstCheck();
+		System.out.println("Starting at:" + getStartingFloor());
+		System.out.println("Ending at:" + getDestinationFloor());
 	}
-	
 	// instantiate a customer without random floors (for tests)
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
 		ID = setID();
@@ -54,6 +55,11 @@ public class Customer {
 	}
 	public int getDestinationFloor() {
 		return destinationFloor;
+	}
+	
+	// just for test use
+	public int getStartingFloor(){
+		return startingFloor;
 	}
 	public void setDestinationFloor(int destinationFloor) {
 		// add random destination floor from 0 to number of floors - 1 
