@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class ElevatorTest {
 	
+	final int FLOORS = 10;
+	
 	@Test
 	public void move() {
 		Elevator e1 = new Elevator();
@@ -47,8 +49,8 @@ public class ElevatorTest {
 	@Test
 	public void unload() {
 		Elevator e = new Elevator();
-		Customer c1 = new Customer();
-		Customer c2 = new Customer();
+		Customer c1 = new Customer(FLOORS);
+		Customer c2 = new Customer(FLOORS);
 		
 		assertEquals(0, e.getNumberOfCustomers());
 		

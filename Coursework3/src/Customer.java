@@ -38,14 +38,6 @@ public class Customer {
 			return false;
 	}
 	
-//	// startingFloor should be generated when Customer is created
-//	public void generateStartingFloor(){
-//		startingFloor = (int)(Math.random()*Building.getNumberOfFloors());
-//		destinationFloor = (int)(Math.random()*Building.getNumberOfFloors());
-//		System.out.println("Starting at:" + startingFloor);
-//		System.out.println("Ending at:" + destinationFloor);
-//	}
-	
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
