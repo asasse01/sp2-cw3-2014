@@ -5,19 +5,22 @@ import org.junit.Test;
 
 public class SystemControllerTest {
 	
-	/*@Test
+	@Test
 	public void generateCustomers(){
 		
+		//SystemController s = 
+		Building b = SystemController.getBuilding();
+		
 		SystemController.generateCustomers();
-		assertEquals(10, SystemController.getBuilding().getNumberOfCustomers());
-    	assertEquals(10, SystemController.getBuilding().getCustomerList().size());
+		assertEquals(10, b.getNumberOfCustomers());
+    	assertEquals(10, b.getCustomerList().size());
     	
     	// tests if IDs are assigned correctly
-    	assertEquals(0, SystemController.getBuilding().getCustomerList().get(0).getId());
-    	assertEquals(3, SystemController.getBuilding().getCustomerList().get(3).getId());
-    	assertEquals(7, SystemController.getBuilding().getCustomerList().get(7).getId());
-    	assertEquals(9, SystemController.getBuilding().getCustomerList().get(9).getId());
-	}*/
+    	assertEquals(0, b.getCustomerList().get(0).getId());
+    	assertEquals(3, b.getCustomerList().get(3).getId());
+    	assertEquals(7, b.getCustomerList().get(7).getId());
+    	assertEquals(9, b.getCustomerList().get(9).getId());
+	}
 
 	@Test
 	public void defaultStrategy(){
