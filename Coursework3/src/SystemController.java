@@ -10,6 +10,7 @@ public class SystemController {
 		generateCustomers();
 	}
 	
+	
 	public static void generateCustomers(){ 
 		// setting number of customer
 		// should this be done here and not in the building ?
