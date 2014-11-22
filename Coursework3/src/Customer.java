@@ -4,10 +4,16 @@ public class Customer {
 	private int startingFloor;
 	private int currentFloor;
 	private int destinationFloor;
-	private int Id;
-	private boolean inElevator = false;
+	private int ID;
+	private boolean inElevator;
 	private boolean finish = false;
 	private static int customerCounter = 0;
+	
+	public Customer(){
+		ID = setID();
+		inElevator = false;
+	}
+	
 	
 //	// startingFloor should be generated when Customer is created
 //	public void generateStartingFloor(){
@@ -32,11 +38,11 @@ public class Customer {
 		this.destinationFloor = destinationFloor;
 	}
 	public int getId() {
-		return Id;
+		return ID;
 	}
-	public void setId() {
-		Id = getCustomerCounter();
+	public int setID() {
 		setCustomerCounter();
+		return getCustomerCounter();
 	}
 	
 	public int getCustomerCounter(){

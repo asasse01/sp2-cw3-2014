@@ -17,4 +17,9 @@ public class CustomerTest {
 		assertEquals(false, c.getStatus());
 		assertEquals(true, c.isFinished());
 	}
+	
+	@Test
+	public void startsAtDestinationFloor(){
+		
+	}
 }

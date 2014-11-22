@@ -50,16 +50,14 @@ public class ElevatorTest {
 		Customer c1 = new Customer();
 		Customer c2 = new Customer();
 		
-		c1.setId();
-		c2.setId();
 		assertEquals(0, e.getNumberOfCustomers());
 		
 		// 2 customers get in
 		e.customerJoins(c1);
 		e.customerJoins(c2);
 		// tests the id of the 2 customers
-		assertEquals(0, c1.getId());
-		assertEquals(1, c2.getId());
+		assertEquals(1, c1.getId());
+		assertEquals(2, c2.getId());
 		
 		c1.setDestinationFloor(1);
 		c2.setDestinationFloor(2);
