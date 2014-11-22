@@ -45,13 +45,13 @@ public class SystemControllerTest {
 		b1.addCustomer(c3);
 		b1.addCustomer(c4);
 	
-		SystemController.defaultStrategy();
+		int count = SystemController.defaultStrategy();
 		assertEquals(true, c1.isFinished());
 		assertEquals(true, c2.isFinished());
 		assertEquals(true, c3.isFinished());
 		assertEquals(true, c4.isFinished());
 
-
+		System.out.println("Count: "+count);
 
 	}
 }
