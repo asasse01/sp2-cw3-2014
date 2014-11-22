@@ -9,11 +9,33 @@ public class Customer {
 	private boolean finish = false;
 	private static int customerCounter = 0;
 	
-	public Customer(){
+	public Customer(int numberOfFloors){
 		ID = setID();
 		inElevator = false;
+		startingFloor = pickRandomFloor(numberOfFloors);
+		destinationFloor = pickRandomFloor(numberOfFloors);
+//		finish = firstCheck();
 	}
 	
+	// instantiate a customer without random floors (for tests)
+	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
+		ID = setID();
+		inElevator = false;
+		this.startingFloor = startingFloor;
+		this.destinationFloor = destinationFloor;
+		finish = firstCheck();
+	}
+	
+	public int pickRandomFloor(int numberOfFloors){
+		return (int)(Math.random()*numberOfFloors);
+	}
+	
+	public boolean firstCheck(){
+		if (startingFloor == destinationFloor)
+			return true;
+		else
+			return false;
+	}
 	
 //	// startingFloor should be generated when Customer is created
 //	public void generateStartingFloor(){

@@ -8,7 +8,7 @@ public class CustomerTest {
 
 	@Test
 	public void getInAndOut(){
-		Customer c = new Customer();
+		Customer c = new Customer(10);
 		assertEquals(false, c.getStatus());
 		assertEquals(false, c.isFinished());
 		c.getsIn();
@@ -19,7 +19,8 @@ public class CustomerTest {
 	}
 	
 	@Test
-	public void startsAtDestinationFloor(){
-		
+	public void startingFloorIsDestinationFloor(){
+		Customer c = new Customer(4, 3, 3);
+		assertEquals(true, c.isFinished());
 	}
 }
