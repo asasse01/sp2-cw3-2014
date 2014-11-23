@@ -6,7 +6,6 @@ public class Building {
 	// this could be an int arrayList, it'll make easy to avoid 13th floor
 	private int numberOfFloors;
 	private ArrayList<Integer> floorList;
-	private int numberOfCustomers;
 	private ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator elevator;
 
@@ -17,7 +16,6 @@ public class Building {
 	
 	public Building() {
 		setNumberOfFloors();
-		setNumberOfCustomers();
 		setFloorList();
 		setElevator(new Elevator()); 
 		
@@ -46,17 +44,7 @@ public class Building {
 	}
 	
 	public int getNumberOfCustomers(){
-		return numberOfCustomers;
-	}
-	
-	public void setNumberOfCustomers() {
-		// default
-		numberOfCustomers = 10;
-	}
-
-	public void setNumberOfCustomers(int numberOfCustomers) {
-		// User should choose
-		this.numberOfCustomers = numberOfCustomers;
+		return customerList.size();
 	}
 	
 	public ArrayList<Integer> getFloorList(){

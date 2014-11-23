@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class ElevatorTest {
 	
+	final int FLOORS = 10;
+	
 	@Test
 	public void move() {
 		Elevator e1 = new Elevator();
@@ -47,19 +49,17 @@ public class ElevatorTest {
 	@Test
 	public void unload() {
 		Elevator e = new Elevator();
-		Customer c1 = new Customer();
-		Customer c2 = new Customer();
+		Customer c1 = new Customer(FLOORS, 0, 1);
+		Customer c2 = new Customer(FLOORS, 0, 2);
 		
-		c1.setId();
-		c2.setId();
 		assertEquals(0, e.getNumberOfCustomers());
 		
 		// 2 customers get in
 		e.customerJoins(c1);
 		e.customerJoins(c2);
 		// tests the id of the 2 customers
-		assertEquals(0, c1.getId());
-		assertEquals(1, c2.getId());
+		assertEquals(1, c1.getId());
+		assertEquals(2, c2.getId());
 		
 		c1.setDestinationFloor(1);
 		c2.setDestinationFloor(2);
@@ -69,7 +69,7 @@ public class ElevatorTest {
 		e.move();
 		e.unload();
 		assertEquals(1, e.getNumberOfCustomers());
-		// move elevator up by 1 floor
+//		 move elevator up by 1 floor
 		e.move();
 		e.unload();
 		assertEquals(0, e.getNumberOfCustomers());

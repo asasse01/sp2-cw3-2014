@@ -8,11 +8,10 @@ public class Elevator {
 	private int direction; // -1 0 +1
 	
 	public Elevator() {
-		//default
 		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
 		currentFloor = 0;
 		direction = 1;
-		//registerList = new ArrayList<Customer>();
+		registerList = new ArrayList<Customer>();
 	}
 	
 	public int getCurrentFloor() {
@@ -86,10 +85,11 @@ public class Elevator {
 		return registerList;
 	}	
 	
+	
 	public void unload() {
 		ArrayList<Customer> unloadList = new ArrayList<Customer>();
 		for (Customer c : getRegisterList()) {
-			if (c.getCurrentFloor() == c.getDestinationFloor()) {
+			if (c.isAtDestination()) {
 				unloadList.add(c);
 			}
 		}
