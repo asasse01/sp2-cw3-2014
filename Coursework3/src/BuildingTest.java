@@ -5,6 +5,8 @@ import org.junit.Test;
 
 
 public class BuildingTest {
+	
+	final int FLOORS = 10;
 
 	@Test
 	public void setNumberOfFloors(){
@@ -20,7 +22,7 @@ public class BuildingTest {
 	public void customerJoinsAndLeaves(){
 		Building b = new Building();
 		assertEquals(0, b.getCustomerList().size());
-		Customer c = new Customer();
+		Customer c = new Customer(FLOORS);
 		b.addCustomer(c);
 		assertEquals(1, b.getCustomerList().size());
 	}
@@ -28,7 +30,7 @@ public class BuildingTest {
 	@Test
 	public void load() {
 		Building b = new Building();
-		Customer c1 = new Customer();
+		Customer c1 = new Customer(FLOORS);
 		b.addCustomer(c1);
 		c1.setCurrentFloor(0);
 		c1.setDestinationFloor(2);

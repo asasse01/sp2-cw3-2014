@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class SystemController {
 	private static Building building = new Building();
+	final static int FLOORS = 10;
 	
 	public static void main(String[] args) {
 		
@@ -17,8 +18,7 @@ public class SystemController {
 		building.setNumberOfCustomers(); 
 		
 		while (building.getCustomerList().size() != building.getNumberOfCustomers()){ // to do recursively
-			Customer customer = new Customer();
-			customer.setId();
+			Customer customer = new Customer(FLOORS);
 			// customer.setCurrentFloor();
 			// customer.setDestinationFloor();
 			System.out.println(customer.getId()); // to be removed
