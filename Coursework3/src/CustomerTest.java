@@ -5,10 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CustomerTest {
+	
+	final int FLOORS = 10;
 
 	@Test
 	public void getInAndOut(){
-		Customer c = new Customer(10, 3, 4);
+		Customer c = new Customer(FLOORS, 3, 4);
 		assertEquals(false, c.getStatus());
 		assertEquals(false, c.isFinished());
 		c.getsIn();
@@ -20,7 +22,7 @@ public class CustomerTest {
 	
 	@Test
 	public void randomFloors(){
-		Customer c = new Customer(10);
+		Customer c = new Customer(FLOORS);
 		assertTrue((c.getStartingFloor() < 10));
 		assertTrue((c.getStartingFloor() >= 0));
 		assertTrue((c.getDestinationFloor() < 10));

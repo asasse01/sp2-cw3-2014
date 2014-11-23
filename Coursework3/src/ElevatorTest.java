@@ -49,8 +49,8 @@ public class ElevatorTest {
 	@Test
 	public void unload() {
 		Elevator e = new Elevator();
-		Customer c1 = new Customer(FLOORS);
-		Customer c2 = new Customer(FLOORS);
+		Customer c1 = new Customer(FLOORS, 0, 1);
+		Customer c2 = new Customer(FLOORS, 0, 2);
 		
 		assertEquals(0, e.getNumberOfCustomers());
 		
@@ -69,7 +69,7 @@ public class ElevatorTest {
 		e.move();
 		e.unload();
 		assertEquals(1, e.getNumberOfCustomers());
-		// move elevator up by 1 floor
+//		 move elevator up by 1 floor
 		e.move();
 		e.unload();
 		assertEquals(0, e.getNumberOfCustomers());

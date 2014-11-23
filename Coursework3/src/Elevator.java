@@ -85,10 +85,11 @@ public class Elevator {
 		return registerList;
 	}	
 	
+	
 	public void unload() {
 		ArrayList<Customer> unloadList = new ArrayList<Customer>();
 		for (Customer c : getRegisterList()) {
-			if (c.getCurrentFloor() == c.getDestinationFloor()) {
+			if (c.isAtDestination()) {
 				unloadList.add(c);
 			}
 		}
