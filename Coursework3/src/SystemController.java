@@ -66,14 +66,7 @@ public class SystemController {
 			} while (withinFloorLimits());			
 		
 			building.getElevator().switchDirection();
-			
-			for (Customer customer : building.getCustomerList()) {
-	            // TODO method to check all customers are on destination floor
-	            if (customer.isFinished()) {
-	                setSimulationStatus(true);
-	            } else setSimulationStatus(false);
-	        }
-							
+			updateSimulationStatus();				
 		}
 	}
 
@@ -92,6 +85,14 @@ public class SystemController {
 		}
 		else return false;
 		
+	}
+	
+	public static void updateSimulationStatus() {
+		for (Customer customer : building.getCustomerList()) {
+            if (customer.isFinished()) {
+                setSimulationStatus(true);
+            } else setSimulationStatus(false);
+        }
 	}
 	
 }
