@@ -13,7 +13,7 @@ public class SystemController {
 		generateCustomers();
 	}
 	
-	public static int numberOfCustomers(){
+	public static int defaultNumberOfCustomers(){
 		return 10;
 	}
 	
@@ -26,15 +26,17 @@ public class SystemController {
 	}
 	
 	public static void generateCustomers(){ 
-		// setting number of customer
-		// should this be done here and not in the building ?
-//		building.setNumberOfCustomers(); 
-		
-		while (building.getCustomerList().size() != numberOfCustomers()){ // to do recursively
+		// setting default number of customers
+		while (building.getCustomerList().size() != defaultNumberOfCustomers()){ // to do recursively
 			Customer customer = new Customer(FLOORS);
-			// customer.setCurrentFloor();
-			// customer.setDestinationFloor();
-			System.out.println(customer.getId()); // to be removed
+			building.addCustomer(customer);
+		}
+	}
+	
+	public static void generateCustomers(int number){ 
+		// setting user specified number of customers
+		while (building.getCustomerList().size() != number){ // to do recursively
+			Customer customer = new Customer(FLOORS);
 			building.addCustomer(customer);
 		}
 	}
@@ -61,7 +63,7 @@ public class SystemController {
 
 			setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
 			building.getElevator().move();
-			} while ((building.getElevator().getCurrentFloor() > 0) && (building.getElevator().getCurrentFloor() < building.getNumberOfFloors()));			
+			} while (withinFloorLimits());			
 		
 			building.getElevator().switchDirection();
 			
@@ -82,4 +84,14 @@ public class SystemController {
 	static void setEfficiencyCounter(int efficiencyCounter) {
 		SystemController.efficiencyCounter = efficiencyCounter;
 	}
+	
+	public static boolean withinFloorLimits() {
+		if ((building.getElevator().getCurrentFloor() > 0) 
+				&& (building.getElevator().getCurrentFloor() < building.getNumberOfFloors())) {
+			return true;
+		}
+		else return false;
+		
+	}
+	
 }
