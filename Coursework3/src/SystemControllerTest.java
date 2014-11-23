@@ -25,10 +25,10 @@ public class SystemControllerTest {
 		
 		e1.setDirection(1); // refactor
 
-		int count = SystemController.defaultStrategy();
+		SystemController.defaultStrategy();
 		assertEquals(true, SystemController.getSimulationStatus());
 
-		System.out.println("Count: " + count);
+		System.out.println("Count: " + SystemController.getEfficiencyCounter());
 
 	}
 	

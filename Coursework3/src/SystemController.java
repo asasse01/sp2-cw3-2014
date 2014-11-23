@@ -5,6 +5,7 @@ public class SystemController {
 	private static Building building = new Building();
 	final static int FLOORS = 10;
 	static boolean simulationFinished = false;
+	private static int efficiencyCounter;
 	
 	public static void main(String[] args) {
 		
@@ -19,7 +20,10 @@ public class SystemController {
 	public static boolean getSimulationStatus(){
 		return simulationFinished;
 	}
-	
+
+	public static void setSimulationStatus(boolean status){
+		SystemController.simulationFinished = status;
+	}
 	
 	public static void generateCustomers(){ 
 		// setting number of customer
@@ -39,8 +43,12 @@ public class SystemController {
 		return building;
 	}
 	
-	public static int defaultStrategy() {
-		int count = 0;
+
+	
+	public static void defaultStrategy() {
+		
+		setEfficiencyCounter(0);
+		
 		Building building = getBuilding();
 		
 	
@@ -51,7 +59,7 @@ public class SystemController {
 			// customer gets in if at same floor as elevator
 			building.load();
 
-			count++;
+			setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
 			building.getElevator().move();
 			} while ((building.getElevator().getCurrentFloor() > 0) && (building.getElevator().getCurrentFloor() < building.getNumberOfFloors()));			
 		
@@ -59,11 +67,19 @@ public class SystemController {
 			
 			for (Customer customer : building.getCustomerList()) {
 	            // TODO method to check all customers are on destination floor
-	            if (!(customer.isFinished())) {
-	                simulationFinished = false;
-	            } else simulationFinished = true;
+	            if (customer.isFinished()) {
+	                setSimulationStatus(true);
+	            } else setSimulationStatus(false);
 	        }
 							
-		} return count;
+		}
+	}
+
+	static int getEfficiencyCounter() {
+		return efficiencyCounter;
+	}
+
+	static void setEfficiencyCounter(int efficiencyCounter) {
+		SystemController.efficiencyCounter = efficiencyCounter;
 	}
 }
