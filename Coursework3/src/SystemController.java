@@ -4,11 +4,20 @@ import java.util.ArrayList;
 public class SystemController {
 	private static Building building = new Building();
 	final static int FLOORS = 10;
+	static boolean simulationFinished = false;
 	
 	public static void main(String[] args) {
 		
 		// TODO:  ask User the number of Customers
 		generateCustomers();
+	}
+	
+	public static int numberOFCustomers(){
+		return 10;
+	}
+	
+	public static boolean getSimulationStatus(){
+		return simulationFinished;
 	}
 	
 	
@@ -33,7 +42,7 @@ public class SystemController {
 	public static int defaultStrategy() {
 		int count = 0;
 		Building building = getBuilding();
-		boolean simulationFinished = false;
+		
 	
 		while (!simulationFinished) {
 			do {
