@@ -13,7 +13,7 @@ public class SystemController {
 		generateCustomers();
 	}
 	
-	public static int numberOFCustomers(){
+	public static int numberOfCustomers(){
 		return 10;
 	}
 	
@@ -28,9 +28,9 @@ public class SystemController {
 	public static void generateCustomers(){ 
 		// setting number of customer
 		// should this be done here and not in the building ?
-		building.setNumberOfCustomers(); 
+//		building.setNumberOfCustomers(); 
 		
-		while (building.getCustomerList().size() != building.getNumberOfCustomers()){ // to do recursively
+		while (building.getCustomerList().size() != numberOfCustomers()){ // to do recursively
 			Customer customer = new Customer(FLOORS);
 			// customer.setCurrentFloor();
 			// customer.setDestinationFloor();

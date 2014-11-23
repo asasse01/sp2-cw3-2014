@@ -11,7 +11,7 @@ public class Elevator {
 		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
 		currentFloor = 0;
 		direction = 1;
-		//registerList = new ArrayList<Customer>();
+		registerList = new ArrayList<Customer>();
 	}
 	
 	public int getCurrentFloor() {
