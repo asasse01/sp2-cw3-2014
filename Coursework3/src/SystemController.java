@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 public class SystemController {
 	private static Building building = new Building();
 	final static int FLOORS = 10;
@@ -95,4 +92,35 @@ public class SystemController {
         }
 	}
 	
+	public static void alternativeStrategy() {
+		
+		setEfficiencyCounter(0);
+		
+		Building building = getBuilding();
+		
+	
+		while (!simulationFinished) {
+			do {
+			// customer gets out if at destination floor
+			building.getElevator().unload();
+			
+			for (Customer customer : building.getCustomerList()) {
+				// refactor
+				if (((customer.getDestinationFloor() - customer.getCurrentFloor() > 0) &&
+						building.getElevator().getDirection() == 1) || 
+						((customer.getDestinationFloor() - customer.getCurrentFloor() < 0) &&
+								building.getElevator().getDirection() == -1)) {
+					// customer gets in if at same floor as elevator
+					building.load();
+				}
+			}
+
+			setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
+			building.getElevator().move();
+			} while (withinFloorLimits());			
+		
+			building.getElevator().switchDirection();
+			updateSimulationStatus();				
+		}
+	}
 }
