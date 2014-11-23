@@ -32,40 +32,19 @@ public class SystemControllerTest {
 
 	}
 	
-//	@Test
-//	public void alternativeStrategy() {
-//
-//		Building b1 = SystemController.getBuilding();
-//
-//		Customer c1 = new Customer(FLOORS);
-//		Customer c2 = new Customer(FLOORS);
-//		Customer c3 = new Customer(FLOORS);
-//		Customer c4 = new Customer(FLOORS);
-//
-//		Elevator e1 = b1.getElevator();
-//		e1.setDirection(1);
-//
-//		// tests defaultStrategy in single direction
-//		c1.setDestinationFloor(5);
-//		c2.setDestinationFloor(5);
-//		c3.setDestinationFloor(8);
-//
-//		// tests defaultStrategy in return direction
-//		c4.setCurrentFloor(6);
-//		c4.setDestinationFloor(2);
-//
-//		b1.addCustomer(c1);
-//		b1.addCustomer(c2);
-//		b1.addCustomer(c3);
-//		b1.addCustomer(c4);
+	@Test
+	public void alternativeStrategy() {
 
-//		int count = SystemController.alternativeStrategy();
-//		assertEquals(true, c1.isFinished());
-//		assertEquals(true, c2.isFinished());
-//		assertEquals(true, c3.isFinished());
-//		assertEquals(true, c4.isFinished());
+		SystemController.generateCustomers();
+		Building b1 = SystemController.getBuilding();
+		Elevator e1 = b1.getElevator();
 
-//		System.out.println("Count: " + count);
+		e1.setDirection(1); // refactor
 
-//	}
+		SystemController.alternativeStrategy();
+		assertEquals(true, SystemController.getSimulationStatus());
+
+		System.out.println("Count: " + SystemController.getEfficiencyCounter());
+
+	}
 }
