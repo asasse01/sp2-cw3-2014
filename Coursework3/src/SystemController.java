@@ -24,9 +24,8 @@ public class SystemController {
 
 	public static void generateCustomers() {
 		// setting default number of customers
-		while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to
-																					// do
-																					// recursively
+		while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
+
 			Customer customer = new Customer(FLOORS);
 			building.addCustomer(customer);
 		}
@@ -34,8 +33,8 @@ public class SystemController {
 
 	public static void generateCustomers(int number) {
 		// setting user specified number of customers
-		while (building.getCustomerList().size() != number) { // to do
-																// recursively
+		while (building.getCustomerList().size() != number) { // to do recursively
+
 			Customer customer = new Customer(FLOORS);
 			building.addCustomer(customer);
 		}
@@ -125,12 +124,12 @@ public class SystemController {
 			updateSimulationStatus();
 		}
 	}
-	
+
 	public static void clearSystemData() {
-		
+
 		setSimulationStatus(false);
 		building.getCustomerList().clear();
 		setEfficiencyCounter(0);
-		
+
 	}
 }
