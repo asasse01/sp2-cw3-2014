@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SystemController {
 	private static Building building = new Building();
 	final static int FLOORS = 10;
@@ -6,8 +8,10 @@ public class SystemController {
 
 	public static void main(String[] args) {
 
-		// TODO: ask User the number of Customers
-		generateCustomers();
+		// TODO: ask User to specify simulation type
+		int numberOfCustomers = requestNumberOfCustomers();
+		generateCustomers(numberOfCustomers);
+
 	}
 
 	public static int defaultNumberOfCustomers() {
@@ -131,5 +135,14 @@ public class SystemController {
 		building.getCustomerList().clear();
 		setEfficiencyCounter(0);
 
+	}
+
+	public static int requestNumberOfCustomers() {
+		Scanner in = new Scanner(System.in);
+		int numberOfCustomers = defaultNumberOfCustomers();
+		System.out.println("Please enter the number of customers: ");
+		numberOfCustomers = in.nextInt();
+		in.close();
+		return numberOfCustomers;
 	}
 }
