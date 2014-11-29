@@ -3,22 +3,16 @@ import java.util.ArrayList;
 
 public class Building {
 
-	// this could be an int arrayList, it'll make easy to avoid 13th floor
+	private final int DEFAULT = 10;
 	private int numberOfFloors;
 	private ArrayList<Integer> floorList;
 	private ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator elevator;
 
-
-	/* NOTES:
-	 * add class constructor with elevator
-	 */
-
 	public Building() {
 		setNumberOfFloors();
 		setFloorList();
 		setElevator(new Elevator());
-
 	}
 
 	public ArrayList<Customer> getCustomerList(){
@@ -35,7 +29,7 @@ public class Building {
 
 	public void setNumberOfFloors() {
 		// default
-		this.numberOfFloors = 10;
+		this.numberOfFloors = DEFAULT;
 	}
 
 	public void setNumberOfFloors(int numberOfFloors) {
@@ -52,7 +46,6 @@ public class Building {
 	}
 
 	public void setFloorList(){
-		// Should always be equal to number of floors
 		//TODO: exclude 13th floor
 		floorList = new ArrayList<Integer>(this.getNumberOfFloors());
 

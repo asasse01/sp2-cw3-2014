@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class SystemController {
+	final static int DEFAULT = 10;
 	private static Building building = new Building();
-	final static int FLOORS = 10;
+	static int numberOfFloors = DEFAULT;
 	static boolean simulationFinished = false;
 	private static int efficiencyCounter;
 
@@ -15,7 +16,7 @@ public class SystemController {
 	}
 
 	public static int defaultNumberOfCustomers() {
-		return 10;
+		return DEFAULT;
 	}
 
 	public static boolean getSimulationStatus() {
@@ -30,7 +31,8 @@ public class SystemController {
 		// setting default number of customers
 		while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
 
-			Customer customer = new Customer(FLOORS);
+			Customer customer = new Customer(numberOfFloors);
+			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
@@ -39,7 +41,8 @@ public class SystemController {
 		// setting user specified number of customers
 		while (building.getCustomerList().size() != number) { // to do recursively
 
-			Customer customer = new Customer(FLOORS);
+			Customer customer = new Customer(numberOfFloors);
+			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
@@ -59,7 +62,7 @@ public class SystemController {
 				// customer gets out if at destination floor
 				building.getElevator().unload();
 				// customer gets in if at same floor as elevator
-				building.load();
+				building.getElevator().load(building.getCustomerList());
 
 				setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
 				building.getElevator().move();
@@ -116,7 +119,7 @@ public class SystemController {
 									- customer.getCurrentFloor() < 0) && building
 									.getElevator().getDirection() == -1)) {
 						// customer gets in if at same floor as elevator
-						building.load();
+						building.getElevator().load(building.getCustomerList());
 					}
 				}
 

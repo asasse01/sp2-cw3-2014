@@ -2,13 +2,11 @@ import java.util.ArrayList;
 
 
 public class Elevator {
-	private int NUM_OF_FLOORS;
 	private static ArrayList<Customer> registerList = new ArrayList<Customer>();
 	private int currentFloor;
 	private int direction; // -1 0 +1
 
 	public Elevator() {
-		NUM_OF_FLOORS = 10; //TODO: change to num of floors in building
 		currentFloor = 0;
 		direction = 1;
 		registerList = new ArrayList<Customer>();
@@ -104,14 +102,15 @@ public class Elevator {
 
 	public void unload() {
 		ArrayList<Customer> unloadList = new ArrayList<Customer>();
-		for (Customer c : getRegisterList()) {
-			if (c.isAtDestination()) {
-				unloadList.add(c);
+		for (Customer customer : getRegisterList()) {
+			// customer leaves if they are on destination floor
+			if (customer.isAtDestination()) {
+				unloadList.add(customer);
 			}
 		}
-
-		for (Customer c : unloadList) {
-		    customerLeaves(c);
+		// customer leaves after loop (to avoid concurrency error)
+		for (Customer customer : unloadList) {
+		    customerLeaves(customer);
 		}
 
 	}

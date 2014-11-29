@@ -12,13 +12,6 @@ public class SystemControllerTest {
 		SystemController.generateCustomers();
 		// test number of customers
 		assertEquals(10, SystemController.getBuilding().getCustomerList().size());
-		// note: decide whether we should have single instance of SystemController that is cleared after use or new instances
-//		// tests if IDs are assigned correctly
-//    	assertEquals(1, SystemController.getBuilding().getCustomerList().get(0).getId());
-//    	assertEquals(4, SystemController.getBuilding().getCustomerList().get(3).getId());
-//    	assertEquals(8, SystemController.getBuilding().getCustomerList().get(7).getId());
-//    	assertEquals(10, SystemController.getBuilding().getCustomerList().get(9).getId());
-
     	SystemController.clearSystemData();
 
 	}
