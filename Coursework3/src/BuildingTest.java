@@ -1,11 +1,11 @@
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 
 public class BuildingTest {
-	
+
 	final int FLOORS = 10;
 
 	@Test
@@ -13,11 +13,11 @@ public class BuildingTest {
 		Building b = new Building();
 		b.setNumberOfFloors(100);
     	assertEquals(100, b.getNumberOfFloors());
- 
+
     	b.setNumberOfFloors();
     	assertEquals(10, b.getNumberOfFloors());
 	}
-	
+
 	@Test
 	public void customerJoinsAndLeaves(){
 		Building b = new Building();
@@ -26,22 +26,7 @@ public class BuildingTest {
 		b.addCustomer(c);
 		assertEquals(1, b.getCustomerList().size());
 	}
-	
-	@Test
-	public void load() {
-		Building b = new Building();
-		Customer c1 = new Customer(FLOORS);
-		b.addCustomer(c1);
-		c1.setCurrentFloor(0);
-		c1.setDestinationFloor(2);
 
-		// tests that there are no customers in the elevator to begin with
-		assertEquals(0, b.getElevator().getNumberOfCustomers());
-		
-		b.load();
-		assertEquals(1, b.getElevator().getNumberOfCustomers());
-
-	}
 }
 
 
