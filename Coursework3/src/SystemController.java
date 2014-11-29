@@ -1,8 +1,20 @@
+/**
+ * @author Abby Sassel, Jacopo Scotti
+ * @since 08/11/2014
+ *
+ * Coursework3
+ * - Simulates a simple elevator.
+ * - Shows how different strategies can affect the efficiency of an elevator.
+ *
+ */
+
 import java.util.Scanner;
 
 public class SystemController {
+	final static int DEFAULT = 10;
 	private static Building building = new Building();
-	final static int FLOORS = 10;
+	// TODO createBuilding method?
+	static int numberOfFloors = DEFAULT;
 	static boolean simulationFinished = false;
 	private static int efficiencyCounter;
 
@@ -15,7 +27,7 @@ public class SystemController {
 	}
 
 	public static int defaultNumberOfCustomers() {
-		return 10;
+		return DEFAULT;
 	}
 
 	public static boolean getSimulationStatus() {
@@ -30,7 +42,8 @@ public class SystemController {
 		// setting default number of customers
 		while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
 
-			Customer customer = new Customer(FLOORS);
+			Customer customer = new Customer(numberOfFloors);
+			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
@@ -39,7 +52,8 @@ public class SystemController {
 		// setting user specified number of customers
 		while (building.getCustomerList().size() != number) { // to do recursively
 
-			Customer customer = new Customer(FLOORS);
+			Customer customer = new Customer(numberOfFloors);
+			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
@@ -48,6 +62,9 @@ public class SystemController {
 		return building;
 	}
 
+	/**
+     * defaultStrategy runs the suggested "start at the bottom, go to the top, then go to the bottom" strategy
+     */
 	public static void defaultStrategy() {
 
 		setEfficiencyCounter(0);
@@ -59,7 +76,7 @@ public class SystemController {
 				// customer gets out if at destination floor
 				building.getElevator().unload();
 				// customer gets in if at same floor as elevator
-				building.load();
+				building.getElevator().load(building.getCustomerList());
 
 				setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
 				building.getElevator().move();
@@ -96,6 +113,10 @@ public class SystemController {
 		}
 	}
 
+	/**
+     * alternativeStrategy uses the same "start at the bottom, go to the top, then go to the bottom" strategy
+     * condition added to only load Customer if the destination floor is in the direction of travel
+     */
 	public static void alternativeStrategy() {
 
 		setEfficiencyCounter(0);
@@ -116,7 +137,7 @@ public class SystemController {
 									- customer.getCurrentFloor() < 0) && building
 									.getElevator().getDirection() == -1)) {
 						// customer gets in if at same floor as elevator
-						building.load();
+						building.getElevator().load(building.getCustomerList());
 					}
 				}
 
