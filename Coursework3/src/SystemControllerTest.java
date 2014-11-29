@@ -19,9 +19,9 @@ public class SystemControllerTest {
 	@Test
 	public void defaultStrategy() {
 
+		SystemController.generateBuilding();
 		SystemController.generateCustomers();
-		Building b1 = SystemController.getBuilding();
-		Elevator e1 = b1.getElevator();
+		Elevator e1 = SystemController.getBuilding().getElevator();
 
 		// test status
 		assertEquals(false, SystemController.getSimulationStatus());
@@ -39,9 +39,9 @@ public class SystemControllerTest {
 	@Test
 	public void alternativeStrategy() {
 
+		SystemController.generateBuilding();
 		SystemController.generateCustomers();
-		Building b1 = SystemController.getBuilding();
-		Elevator e1 = b1.getElevator();
+		Elevator e1 = SystemController.getBuilding().getElevator();
 
 		// test status
 		assertEquals(false, SystemController.getSimulationStatus());

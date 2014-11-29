@@ -5,13 +5,17 @@ public class Building {
 
 	private final int DEFAULT = 10;
 	private int numberOfFloors;
-	private ArrayList<Integer> floorList;
 	private ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator elevator;
 
+	public Building(int numberOfFloors) {
+		setNumberOfFloors(numberOfFloors);
+		System.out.println(getNumberOfFloors());
+		setElevator(new Elevator());
+	}
+	
 	public Building() {
 		setNumberOfFloors();
-		setFloorList();
 		setElevator(new Elevator());
 	}
 
@@ -38,16 +42,6 @@ public class Building {
 
 	public int getNumberOfCustomers(){
 		return customerList.size();
-	}
-
-	public ArrayList<Integer> getFloorList(){
-		return floorList;
-	}
-
-	public void setFloorList(){
-		//TODO: exclude 13th floor
-		floorList = new ArrayList<Integer>(this.getNumberOfFloors());
-
 	}
 
 	public Elevator getElevator() {
