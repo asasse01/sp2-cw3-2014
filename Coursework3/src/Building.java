@@ -33,7 +33,6 @@ public class Building {
 	}
 
 	public void setNumberOfFloors(int numberOfFloors) {
-		// User should choose
 		this.numberOfFloors = numberOfFloors;
 	}
 
