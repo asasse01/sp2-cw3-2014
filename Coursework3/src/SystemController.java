@@ -60,7 +60,7 @@ public class SystemController {
 		// setting default number of customers
         while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
 
-			Customer customer = new Customer(getNumberOfFloors());
+			Customer customer = new Customer();
 			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
@@ -70,7 +70,7 @@ public class SystemController {
 		// setting user specified number of customers
 		while (building.getCustomerList().size() != number) { // to do recursively
 
-			Customer customer = new Customer(getNumberOfFloors());
+			Customer customer = new Customer();
 			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}

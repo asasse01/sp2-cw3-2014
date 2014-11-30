@@ -22,7 +22,8 @@ public class CustomerTest {
 	
 	@Test
 	public void randomFloors(){
-		Customer c = new Customer(FLOORS);
+		SystemController.generateBuilding();
+		Customer c = new Customer();
 		assertTrue((c.getStartingFloor() < 10));
 		assertTrue((c.getStartingFloor() >= 0));
 		assertTrue((c.getDestinationFloor() < 10));
