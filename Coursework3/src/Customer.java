@@ -14,6 +14,7 @@ public class Customer {
 		currentFloor = pickRandomFloor(numberOfFloors);
 		destinationFloor = pickRandomFloor(numberOfFloors);
 		finish = isAtDestination();
+		System.out.println("ID: " + ID); // create getter
 		System.out.println("Starting at:" + getStartingFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
