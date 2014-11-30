@@ -8,11 +8,11 @@ public class Customer {
 	private boolean finish = false;
 	private static int customerCounter = 0;
 	
-	public Customer(int numberOfFloors){
+	public Customer(){
 		ID = setID();
 		inElevator = false;
-		currentFloor = pickRandomFloor(numberOfFloors);
-		destinationFloor = pickRandomFloor(numberOfFloors);
+		currentFloor = pickRandomFloor(SystemController.getNumberOfFloors());
+		destinationFloor = pickRandomFloor(SystemController.getNumberOfFloors());
 		finish = isAtDestination();
 		System.out.println("ID: " + ID); // create getter
 		System.out.println("Starting at:" + getStartingFloor());
