@@ -30,7 +30,14 @@ public class Customer {
 	}
 	
 	public int pickRandomFloor(int numberOfFloors){
-		return (int)(Math.random()*numberOfFloors);
+		return northAmericaAdjustment((int)(Math.random()*numberOfFloors));
+	}
+	
+	public int northAmericaAdjustment(int numberOfFloors){
+		int adjustedNumber = numberOfFloors + 1; // no GroundFloor
+		if (adjustedNumber < 13)
+			return adjustedNumber; 
+		return adjustedNumber + 1; // Remove 13th Floor
 	}
 	
 	// Checks if startingFloor == destinationFloor
