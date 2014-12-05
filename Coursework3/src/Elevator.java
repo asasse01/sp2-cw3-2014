@@ -38,24 +38,30 @@ public class Elevator {
 		// set direction to strictly -1 0 or 1
 		this.direction = direction;
 	}
+	
+	public ArrayList<Customer> getCustomersInElevator(){
+		return registerList;
+	}
+	
+	public void updateCustomersCurrentFloor(){
+		for (Customer customer : getCustomersInElevator()){
+			customer.setCurrentFloor(getCurrentFloor());
+		}
+		
+	}
 
 	public void move(){
 		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
-				for (Customer customer : registerList) {
-					customer.setCurrentFloor(getCurrentFloor());
-				}
 			    break;
 			case 1:
 				this.setCurrentFloor(getCurrentFloor()+1);
-				for (Customer customer : registerList) {
-					customer.setCurrentFloor(getCurrentFloor());
-				}
 			    break;
 		}
+		updateCustomersCurrentFloor();
 	}
-
+	
 	public void switchDirection() {
 		switch (this.getDirection()) {
 		case -1:

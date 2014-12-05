@@ -82,14 +82,17 @@ public class ElevatorTest {
 		assertEquals(2, e.getNumberOfCustomers());
 		// move elevator up by 1 floor
 		e.move();
+		assertEquals(1, c1.getCurrentFloor());
 		e.unload();
 		assertEquals(1, e.getNumberOfCustomers());
-//		 move elevator up by 1 floor
+		// move elevator up by 1 floor
 		e.move();
+		assertEquals(2, c2.getCurrentFloor());
 		e.unload();
 		assertEquals(0, e.getNumberOfCustomers());
 
 	}
+	
 
 }
 
