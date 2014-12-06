@@ -12,44 +12,6 @@ public class Elevator {
 		registerList = new ArrayList<Customer>();
 	}
 
-	public int getCurrentFloor() {
-		return currentFloor;
-	}
-
-	public void setCurrentFloor() {
-		// default
-		this.currentFloor = 0;
-	}
-
-	public void setCurrentFloor(int floor) {
-		this.currentFloor = floor;
-	}
-
-	public int getDirection() {
-		return direction;
-	}
-
-	public void setDirection() {
-		// default
-		this.direction = 0;
-	}
-
-	public void setDirection(int direction) {
-		// set direction to strictly -1 0 or 1
-		this.direction = direction;
-	}
-	
-	public ArrayList<Customer> getCustomersInElevator(){
-		return registerList;
-	}
-	
-	public void updateCustomersCurrentFloor(){
-		for (Customer customer : getCustomersInElevator()){
-			customer.setCurrentFloor(getCurrentFloor());
-		}
-		
-	}
-
 	public void move(){
 		switch (this.getDirection()) {
 			case -1:
@@ -60,33 +22,6 @@ public class Elevator {
 			    break;
 		}
 		updateCustomersCurrentFloor();
-	}
-	
-	public void switchDirection() {
-		switch (this.getDirection()) {
-		case -1:
-			this.setDirection(+1);
-		    break;
-		case 1:
-			this.setDirection(-1);
-		    break;
-		}
-
-	}
-
-	public void customerJoins(Customer cust){
-		cust.getsIn();
-		registerList.add(cust);
-	}
-	public void customerLeaves(Customer cust){
-		cust.getsOut();
-		registerList.remove(cust);
-	}
-	public int getNumberOfCustomers(){
-		return registerList.size();
-	}
-	public static ArrayList<Customer> getRegisterList(){
-		return registerList;
 	}
 
 	public void load(ArrayList<Customer> customerList) {
@@ -108,7 +43,7 @@ public class Elevator {
 
 	public void unload() {
 		ArrayList<Customer> unloadList = new ArrayList<Customer>();
-		for (Customer customer : getRegisterList()) {
+		for (Customer customer : getCustomersInElevator()) {
 			// customer leaves if they are on destination floor
 			if (customer.isAtDestination()) {
 				unloadList.add(customer);
@@ -120,6 +55,48 @@ public class Elevator {
 		}
 
 	}
+
+	public int getCurrentFloor() {
+		return currentFloor;
+	}
+	public void setCurrentFloor() {
+		// default
+		this.currentFloor = 0;
+	}
+	public void setCurrentFloor(int floor) {
+		this.currentFloor = floor;
+	}
+	public int getDirection() {
+		return direction;
+	}
+	public void setDirection() {
+		// default
+		this.direction = 0;
+	}
+	public void switchDirection() {
+		setDirection(-getDirection());
+	}
+	public void customerJoins(Customer cust){
+		cust.getsIn();
+		registerList.add(cust);
+	}
+	public void customerLeaves(Customer cust){
+		cust.getsOut();
+		registerList.remove(cust);
+	}
+	public int getNumberOfCustomers(){
+		return registerList.size();
+	}
+	public void setDirection(int direction) {
+		// set direction to strictly -1 0 or 1
+		this.direction = direction;
+	}
+	public ArrayList<Customer> getCustomersInElevator(){
+		return registerList;
+	}
+	public void updateCustomersCurrentFloor(){
+		for (Customer customer : getCustomersInElevator()){
+			customer.setCurrentFloor(getCurrentFloor());
+		}
+	}
 }
-
-
