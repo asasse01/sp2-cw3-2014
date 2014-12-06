@@ -4,15 +4,45 @@ import java.util.ArrayList;
 public class Elevator {
 	private static ArrayList<Customer> registerList = new ArrayList<Customer>();
 	private int currentFloor;
+	private int numberOfFloors;
 	private int direction; // -1 0 +1
+	private final int DEFAULT = 10;
 
-	public Elevator() {
+	public Elevator(int floors) {
 		currentFloor = 0;
 		direction = 1;
 		registerList = new ArrayList<Customer>();
+		numberOfFloors = floors;
 	}
-
+	public Elevator() { // for testing
+		currentFloor = 0;
+		direction = 1;
+		registerList = new ArrayList<Customer>();
+		this.numberOfFloors = DEFAULT;
+	}
+	
+	public int getNumberOfFloors(){
+		return numberOfFloors;
+	}
+	
+	public boolean atLastFloor(){
+		if (getCurrentFloor() == (getNumberOfFloors() - 1)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean atFirsFloor(){
+		if (getCurrentFloor() == 0){
+			return true;
+		}
+		return false;
+	}
+	
 	public void move(){
+		if (atLastFloor()) 
+			switchDirection();
+		
 		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
@@ -22,6 +52,9 @@ public class Elevator {
 			    break;
 		}
 		updateCustomersCurrentFloor();
+		
+		if (atFirsFloor()) 
+			switchDirection();
 	}
 
 	public void load(ArrayList<Customer> customerList) {
