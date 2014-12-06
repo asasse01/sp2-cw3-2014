@@ -14,9 +14,9 @@ public class Customer {
 		currentFloor = pickRandomFloor(SystemController.getNumberOfFloors());
 		destinationFloor = pickRandomFloor(SystemController.getNumberOfFloors());
 		finish = isAtDestination();
-		System.out.println("ID: " + ID); // create getter
-		System.out.println("Starting at:" + getStartingFloor());
-		System.out.println("Ending at:" + getDestinationFloor());
+		System.out.print("Customer ID: " + ID); // create getter
+		System.out.print(" - starts at: " + getStartingFloor());
+		System.out.println(" - ends at: " + getDestinationFloor());
 	}
 	// instantiate a customer without random floors (for tests)
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){

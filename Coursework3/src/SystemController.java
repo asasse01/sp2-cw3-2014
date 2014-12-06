@@ -18,7 +18,6 @@ public class SystemController {
 	static boolean simulationFinished = false;
 	private static int efficiencyCounter;
 	static Scanner in = new Scanner(System.in);
-	
 
 	public static void main(String[] args) {
 
@@ -30,7 +29,6 @@ public class SystemController {
 		generateCustomers(numberOfCustomers); // to refactor
 		
 		defaultStrategy();
-		
 	}
 
 	// to remove
@@ -57,25 +55,29 @@ public class SystemController {
      * defaultStrategy runs the suggested "start at the bottom, go to the top, then go to the bottom" strategy
      */
 	public static void defaultStrategy() {
-
 		setEfficiencyCounter(0);
 
-		
 		// elevator should automatically:
 		// load 
 		// unload
 		// move
-		
+			
 		while (!simulationFinished) {
-			// customer gets out if at destination floor
-			getBuilding().getElevator().unload();
-			// customer gets in if at same floor as elevator
-			getBuilding().getElevator().load(getBuilding().getCustomerList());
-
-			setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
-			getBuilding().getElevator().move();
-
-			updateSimulationStatus();
+			// customers get out if at destination floor
+			building.getElevator().unload();
+			// customers get in if at same floor as elevator
+			building.getElevator().load(getBuilding().getCustomerList());
+			moveAndUpdateCounter();
+			updateSimulationStatusDS();
+		}
+		System.out.println("Elevator stopped at " + getEfficiencyCounter() + " floors");
+	}
+	
+	public static void updateSimulationStatusDS() {
+		if (building.getElevator().getCurrentFloor() == 0) {
+			setSimulationStatus(true);
+		} else {
+				setSimulationStatus(false);
 		}
 	}
 
@@ -120,13 +122,19 @@ public class SystemController {
 			updateSimulationStatus();
 		}
 	}
-
+	
+	public static void moveAndUpdateCounter(){
+		building.getElevator().move();
+		updateEfficiencyCounter();
+	}
+	private static void updateEfficiencyCounter() {
+		setEfficiencyCounter(getEfficiencyCounter() + 1);
+	}
 	public static void clearSystemData() {
 		setSimulationStatus(false);
 		building.getCustomerList().clear();
 		setEfficiencyCounter(0);
 	}
-
 	static int getEfficiencyCounter() {
 		return efficiencyCounter;
 	}

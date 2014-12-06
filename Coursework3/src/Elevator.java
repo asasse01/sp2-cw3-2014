@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class Elevator {
 	private static ArrayList<Customer> registerList = new ArrayList<Customer>();
 	private int currentFloor;
@@ -40,6 +39,8 @@ public class Elevator {
 	}
 	
 	public void move(){
+		
+		System.out.println("Elevator is at floor #" + getCurrentFloor());
 		if (atLastFloor()) 
 			switchDirection();
 		
@@ -52,7 +53,7 @@ public class Elevator {
 			    break;
 		}
 		updateCustomersCurrentFloor();
-		
+		System.out.println("Elevator moves to floor #" + getCurrentFloor());
 		if (atFirsFloor()) 
 			switchDirection();
 	}
@@ -112,10 +113,12 @@ public class Elevator {
 	public void customerJoins(Customer cust){
 		cust.getsIn();
 		registerList.add(cust);
+		System.out.println("Customer #"+ cust.getId() + "is now in the lift");
 	}
 	public void customerLeaves(Customer cust){
 		cust.getsOut();
 		registerList.remove(cust);
+		System.out.println("Customer #"+ cust.getId() + "left the lift");
 	}
 	public int getNumberOfCustomers(){
 		return registerList.size();
