@@ -24,9 +24,7 @@ public class ElevatorTest {
 
 		assertEquals(1, e1.getCurrentFloor());
 		assertEquals(0, e2.getCurrentFloor());
-
 	}
-
 	@Test
 	public void switchDirection() {
 		Elevator e1 = new Elevator();
@@ -43,9 +41,7 @@ public class ElevatorTest {
 
 		assertEquals(-1, e1.getDirection());
 		assertEquals(1, e2.getDirection());
-
 	}
-
 	@Test
 	public void load() {
 		Building b = new Building();
@@ -58,9 +54,7 @@ public class ElevatorTest {
 
 		e.load(b.getCustomerList());
 		assertEquals(1, e.getNumberOfCustomers());
-
 	}
-
 	@Test
 	public void unload() {
 		Elevator e = new Elevator();
@@ -82,14 +76,29 @@ public class ElevatorTest {
 		assertEquals(2, e.getNumberOfCustomers());
 		// move elevator up by 1 floor
 		e.move();
+		assertEquals(1, c1.getCurrentFloor());
 		e.unload();
 		assertEquals(1, e.getNumberOfCustomers());
-//		 move elevator up by 1 floor
+		// move elevator up by 1 floor
 		e.move();
+		assertEquals(2, c2.getCurrentFloor());
 		e.unload();
 		assertEquals(0, e.getNumberOfCustomers());
-
 	}
-
+	@Test
+	public void firstOrLastFloor() {
+		
+		Building b = new Building(2);
+		Elevator e = b.getElevator();
+		assertEquals(0, e.getCurrentFloor());
+		e.move();
+		assertEquals(1, e.getCurrentFloor());
+		e.move();
+		assertEquals(0, e.getCurrentFloor());
+		e.move();
+		assertEquals(1, e.getCurrentFloor());
+		e.move();
+		assertEquals(0, e.getCurrentFloor());
+	}
 }
 

@@ -11,12 +11,12 @@ public class Building {
 	public Building(int numberOfFloors) {
 		setNumberOfFloors(numberOfFloors);
 		System.out.println(getNumberOfFloors());
-		setElevator(new Elevator());
+		setElevator(elevator = new Elevator(numberOfFloors));
 	}
 	
 	public Building() {
 		setNumberOfFloors();
-		setElevator(new Elevator());
+		setElevator(elevator = new Elevator());
 	}
 
 	public ArrayList<Customer> getCustomerList(){
