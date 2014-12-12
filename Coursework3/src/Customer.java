@@ -41,6 +41,15 @@ public class Customer {
 			return false;
 	}
 	
+	public boolean elevatorArrivedAtStartingFloor(){
+		if (SystemController.getBuilding().getElevator().getCurrentFloor() == getStartingFloor() && !isFinished() && !isInElevator()){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 	public int getCurrentFloor() {
 		return currentFloor;
 	}

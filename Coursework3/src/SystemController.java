@@ -29,7 +29,10 @@ public class SystemController {
 		generateBuilding(numberOfFloors);
 		generateCustomers(numberOfCustomers); // to refactor
 		
-		defaultStrategy();
+		setEfficiencyCounter(0);
+		System.out.println(getEfficiencyCounter());
+		alternativeStrategy();
+		System.out.println(getEfficiencyCounter());
 		
 	}
 
@@ -37,18 +40,14 @@ public class SystemController {
 	public static void generateCustomers() {
 		// setting default number of customers
         while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
-
 			Customer customer = new Customer();
-			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
 	public static void generateCustomers(int number) {
 		// setting user specified number of customers
 		while (building.getCustomerList().size() != number) { // to do recursively
-
 			Customer customer = new Customer();
-			// TODO change to number of floors in building
 			building.addCustomer(customer);
 		}
 	}
@@ -57,34 +56,16 @@ public class SystemController {
      * defaultStrategy runs the suggested "start at the bottom, go to the top, then go to the bottom" strategy
      */
 	public static void defaultStrategy() {
-
-		setEfficiencyCounter(0);
-
-		
-		// elevator should automatically:
-		// load 
-		// unload
-		// move
 		
 		while (!simulationFinished) {
 			// customer gets out if at destination floor
-			getBuilding().getElevator().unload();
+			unloadAndCount();
 			// customer gets in if at same floor as elevator
-			getBuilding().getElevator().load(getBuilding().getCustomerList());
+			loadAndCount();
 
-			setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
 			getBuilding().getElevator().move();
 
 			updateSimulationStatus();
-		}
-	}
-
-	public static void updateSimulationStatus() {
-		for (Customer customer : building.getCustomerList()) {
-			if (customer.isFinished()) {
-				setSimulationStatus(true);
-			} else
-				setSimulationStatus(false);
 		}
 	}
 
@@ -94,31 +75,52 @@ public class SystemController {
      */
 	public static void alternativeStrategy() {
 
-		setEfficiencyCounter(0);
-
-		Building building = getBuilding();
-
+		// efficiencyCounter ++ every time load() and unload() are called (open/close doors)
+		// load/unload should be unified in a single method
+		
 		while (!simulationFinished) {
 			// customer gets out if at destination floor
-			building.getElevator().unload();
-
-			for (Customer customer : building.getCustomerList()) {
-				// refactor
-				if (((customer.getDestinationFloor()
-						- customer.getCurrentFloor() > 0) && building
-						.getElevator().getDirection() == 1)
-						|| ((customer.getDestinationFloor()
-							- customer.getCurrentFloor() < 0) && building
-							.getElevator().getDirection() == -1)) {
-					// customer gets in if at same floor as elevator
-					building.getElevator().load(building.getCustomerList());
-					}
-				}
-				setEfficiencyCounter(getEfficiencyCounter() + 1); // to refactor
-				building.getElevator().move();
-				
+			if (unloadNeeded()) unloadAndCount(); // + 1
+			if (loadNeeded()) loadAndCount();
+			getBuilding().getElevator().move();
 			updateSimulationStatus();
 		}
+	}
+	
+	public static void updateSimulationStatus() {
+		for (Customer customer : building.getCustomerList()) {
+			if (customer.isFinished()) {
+				setSimulationStatus(true);
+			} else
+				setSimulationStatus(false);
+		}
+	}
+	
+	public static void loadAndCount(){
+		getBuilding().getElevator().load(getBuilding().getCustomerList());
+		setEfficiencyCounter(getEfficiencyCounter() + 1);
+		
+	}
+	public static void unloadAndCount(){
+		building.getElevator().unload();
+		setEfficiencyCounter(getEfficiencyCounter() + 1);
+	}
+	
+	public static boolean loadNeeded(){
+		for (Customer customer : building.getCustomerList()){
+			if (customer.elevatorArrivedAtStartingFloor()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static boolean unloadNeeded(){
+		for (Customer customer : building.getElevator().getCustomersInElevator()){
+			if (customer.isAtDestination()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static void clearSystemData() {
