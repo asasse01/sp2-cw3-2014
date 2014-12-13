@@ -58,10 +58,8 @@ public class SystemController {
 	public static void defaultStrategy() {
 
 		while (!simulationFinished) {
-			// customer gets out if at destination floor
-			unloadAndCount();
-			// customer gets in if at same floor as elevator
-			loadAndCount();
+			loadAndUnload();
+			incrementCounter();
 
 			getBuilding().getElevator().move();
 
@@ -74,14 +72,11 @@ public class SystemController {
      * condition added to only load Customer if the destination floor is in the direction of travel
      */
 	public static void alternativeStrategy() {
-
-		// efficiencyCounter ++ every time load() and unload() are called (open/close doors)
-		// load/unload should be unified in a single method
-
 		while (!simulationFinished) {
-			// customer gets out if at destination floor
-			if (unloadNeeded()) unloadAndCount(); // + 1
-			if (loadNeeded()) loadAndCount();
+			if (unloadNeeded() || loadNeeded())  {
+				loadAndUnload();
+				incrementCounter();
+			}
 			getBuilding().getElevator().move();
 			updateSimulationStatus();
 		}
@@ -96,14 +91,9 @@ public class SystemController {
 		}
 	}
 
-	public static void loadAndCount(){
+	public static void loadAndUnload(){
 		getBuilding().getElevator().load(getBuilding().getCustomerList());
-		setEfficiencyCounter(getEfficiencyCounter() + 1);
-
-	}
-	public static void unloadAndCount(){
 		building.getElevator().unload();
-		setEfficiencyCounter(getEfficiencyCounter() + 1);
 	}
 
 	public static boolean loadNeeded(){
@@ -173,6 +163,9 @@ public class SystemController {
 	}
 	public static void setSimulationStatus(boolean status) {
 		SystemController.simulationFinished = status;
+	}
+	public static void incrementCounter() {
+		setEfficiencyCounter(getEfficiencyCounter() + 1);
 	}
 
 
