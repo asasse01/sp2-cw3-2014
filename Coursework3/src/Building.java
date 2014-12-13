@@ -11,34 +11,14 @@ public class Building {
 
 	public Building(int numberOfFloors) {
 		setNumberOfFloors(numberOfFloors);
-		//new stuff
-		floorList = new int[numberOfFloors];
-		for (int i = 0; i < numberOfFloors; i++) {
-			//excludes 13th floor
-			//refactor
-			if (i >= 13) {
-				floorList[i] = i+1;
-			} else floorList[i] = i;
-
-		}
-		//end of new stuff
+		floorList = createUsFloorList(numberOfFloors);
 		System.out.println(getNumberOfFloors());
 		setElevator(elevator = new Elevator(numberOfFloors));
 	}
 
 	public Building() {
 		setNumberOfFloors();
-		//new stuff
-		floorList = new int[getNumberOfFloors()];
-		for (int i = 0; i < getNumberOfFloors(); i++) {
-			//excludes 13th floor
-			//refactor
-			if (i >= 13) {
-				floorList[i] = i+1;
-			} else floorList[i] = i;
-
-		}
-		//end of new stuff
+		floorList = createUsFloorList(numberOfFloors);
 		setElevator(elevator = new Elevator());
 	}
 
@@ -81,6 +61,18 @@ public class Building {
 
 	public void setFloorList(int[] floorList) {
 		this.floorList = floorList;
+	}
+
+	public int[] createUsFloorList(int numberOfFloors) {
+		//excludes 13th floor
+		floorList = new int[numberOfFloors];
+		for (int i = 0; i < floorList.length; i++) {
+			if (i >= 13) {
+				floorList[i] = i+1;
+			} else floorList[i] = i;
+
+		}
+		return floorList;
 	}
 
 }
