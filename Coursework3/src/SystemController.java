@@ -18,7 +18,7 @@ public class SystemController {
 	static boolean simulationFinished = false;
 	private static int efficiencyCounter;
 	static Scanner in = new Scanner(System.in);
-	
+
 
 	public static void main(String[] args) {
 
@@ -28,12 +28,12 @@ public class SystemController {
 		in.close();
 		generateBuilding(numberOfFloors);
 		generateCustomers(numberOfCustomers); // to refactor
-		
+
 		setEfficiencyCounter(0);
 		System.out.println(getEfficiencyCounter());
 		alternativeStrategy();
 		System.out.println(getEfficiencyCounter());
-		
+
 	}
 
 	// to remove
@@ -56,7 +56,7 @@ public class SystemController {
      * defaultStrategy runs the suggested "start at the bottom, go to the top, then go to the bottom" strategy
      */
 	public static void defaultStrategy() {
-		
+
 		while (!simulationFinished) {
 			// customer gets out if at destination floor
 			unloadAndCount();
@@ -77,7 +77,7 @@ public class SystemController {
 
 		// efficiencyCounter ++ every time load() and unload() are called (open/close doors)
 		// load/unload should be unified in a single method
-		
+
 		while (!simulationFinished) {
 			// customer gets out if at destination floor
 			if (unloadNeeded()) unloadAndCount(); // + 1
@@ -86,7 +86,7 @@ public class SystemController {
 			updateSimulationStatus();
 		}
 	}
-	
+
 	public static void updateSimulationStatus() {
 		for (Customer customer : building.getCustomerList()) {
 			if (customer.isFinished()) {
@@ -95,17 +95,17 @@ public class SystemController {
 				setSimulationStatus(false);
 		}
 	}
-	
+
 	public static void loadAndCount(){
 		getBuilding().getElevator().load(getBuilding().getCustomerList());
 		setEfficiencyCounter(getEfficiencyCounter() + 1);
-		
+
 	}
 	public static void unloadAndCount(){
 		building.getElevator().unload();
 		setEfficiencyCounter(getEfficiencyCounter() + 1);
 	}
-	
+
 	public static boolean loadNeeded(){
 		for (Customer customer : building.getCustomerList()){
 			if (customer.elevatorArrivedAtStartingFloor()) {
@@ -174,4 +174,6 @@ public class SystemController {
 	public static void setSimulationStatus(boolean status) {
 		SystemController.simulationFinished = status;
 	}
+
+
 }

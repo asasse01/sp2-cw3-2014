@@ -8,41 +8,43 @@ public class Elevator {
 	private int direction; // -1 0 +1
 	private final int DEFAULT = 10;
 
-	public Elevator(int floors) {
+	public Elevator() { //default
+		currentFloor = 0;
+		direction = 1;
+		registerList = new ArrayList<Customer>();
+//		this.numberOfFloors = DEFAULT;
+	}
+
+	public Elevator(int floors) { // for testing
 		currentFloor = 0;
 		direction = 1;
 		registerList = new ArrayList<Customer>();
 		numberOfFloors = floors;
 	}
-	public Elevator() { // for testing
-		currentFloor = 0;
-		direction = 1;
-		registerList = new ArrayList<Customer>();
-		this.numberOfFloors = DEFAULT;
-	}
-	
+
 	public int getNumberOfFloors(){
 		return numberOfFloors;
 	}
-	
+
 	public boolean atLastFloor(){
 		if (getCurrentFloor() == (getNumberOfFloors() - 1)){
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean atFirsFloor(){
+		//correct this
 		if (getCurrentFloor() == 0){
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void move(){
-		if (atLastFloor()) 
+		if (atLastFloor())
 			switchDirection();
-		
+
 		switch (this.getDirection()) {
 			case -1:
 				this.setCurrentFloor(getCurrentFloor()-1);
@@ -52,8 +54,8 @@ public class Elevator {
 			    break;
 		}
 		updateCustomersCurrentFloor();
-		
-		if (atFirsFloor()) 
+
+		if (atFirsFloor())
 			switchDirection();
 	}
 
@@ -97,7 +99,11 @@ public class Elevator {
 		this.currentFloor = 0;
 	}
 	public void setCurrentFloor(int floor) {
-		this.currentFloor = floor;
+		//excludes 13th floor
+		if (floor >= 13) {
+			this.currentFloor = floor + 1;
+		} else this.currentFloor = floor;
+
 	}
 	public int getDirection() {
 		return direction;

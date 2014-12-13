@@ -10,13 +10,13 @@ public class ElevatorTest {
 
 	@Test
 	public void move() {
-		Elevator e1 = new Elevator();
+		Elevator e1 = new Elevator(FLOORS);
 		e1.setCurrentFloor();
 		// direction up
 		e1.setDirection(1);
 		e1.move();
 
-		Elevator e2 = new Elevator();
+		Elevator e2 = new Elevator(FLOORS);
 		e2.setCurrentFloor(1);
 		// direction down
 		e2.setDirection(-1);
@@ -27,13 +27,13 @@ public class ElevatorTest {
 	}
 	@Test
 	public void switchDirection() {
-		Elevator e1 = new Elevator();
+		Elevator e1 = new Elevator(FLOORS);
 		e1.setCurrentFloor();
 		// direction up
 		e1.setDirection(1);
 		e1.switchDirection();
 
-		Elevator e2 = new Elevator();
+		Elevator e2 = new Elevator(FLOORS);
 		e2.setCurrentFloor(10);
 		// direction down
 		e2.setDirection(-1);
@@ -57,7 +57,7 @@ public class ElevatorTest {
 	}
 	@Test
 	public void unload() {
-		Elevator e = new Elevator();
+		Elevator e = new Elevator(FLOORS);
 		Customer c1 = new Customer(FLOORS, 0, 1);
 		Customer c2 = new Customer(FLOORS, 0, 2);
 
@@ -87,7 +87,7 @@ public class ElevatorTest {
 	}
 	@Test
 	public void firstOrLastFloor() {
-		
+
 		Building b = new Building(2);
 		Elevator e = b.getElevator();
 		assertEquals(0, e.getCurrentFloor());
