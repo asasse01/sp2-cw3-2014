@@ -13,8 +13,6 @@ public class Customer {
 		inElevator = false;
 		currentFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		destinationFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
-//		currentFloor = pickRandomFloor(SystemController.getNumberOfFloors());
-//		destinationFloor = pickRandomFloor(SystemController.getNumberOfFloors());
 		finish = isAtDestination();
 		System.out.println("ID: " + ID); // create getter
 		System.out.println("Starting at:" + getStartingFloor());
@@ -30,10 +28,6 @@ public class Customer {
 		System.out.println("Starting at:" + getStartingFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
-
-//	public int pickRandomFloor(int numberOfFloors){
-//		return (int)(Math.random()*numberOfFloors);
-//	}
 
 	public int pickRandomFloor(int[] floorList){
 		return floorList[(int)((Math.random()*floorList.length))];

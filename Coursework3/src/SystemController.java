@@ -22,17 +22,22 @@ public class SystemController {
 
 	public static void main(String[] args) {
 
-		// TODO: ask User to specify simulation type
 		requestNumberOfCustomers(); // to refactor
 		requestNumberOfFloors(); // to refactor
-		in.close();
+		//setStrategy(in.nextInt());
 		generateBuilding(numberOfFloors);
 		generateCustomers(numberOfCustomers); // to refactor
 
-		setEfficiencyCounter(0);
-		System.out.println(getEfficiencyCounter());
-		alternativeStrategy();
-		System.out.println(getEfficiencyCounter());
+		System.out.println("Run simulation with the alternative strategy? Type 'Y' to run the alternative, or 'N' to run default: ");
+		String strategy = in.next();
+		switch (strategy) {
+	        case "Y": alternativeStrategy();
+	        case "N": defaultStrategy();
+	        //error checking
+		}
+		in.close();
+
+		System.out.println("Efficiency " + getEfficiencyCounter());
 
 	}
 
