@@ -5,17 +5,20 @@ public class Building {
 
 	private final int DEFAULT = 10;
 	private int numberOfFloors;
+	private int[] floorList;
 	private ArrayList<Customer> customerList = new ArrayList<Customer>();
 	private Elevator elevator;
 
 	public Building(int numberOfFloors) {
 		setNumberOfFloors(numberOfFloors);
+		floorList = createUsFloorList(numberOfFloors);
 		System.out.println(getNumberOfFloors());
 		setElevator(elevator = new Elevator(numberOfFloors));
 	}
-	
+
 	public Building() {
 		setNumberOfFloors();
+		floorList = createUsFloorList(numberOfFloors);
 		setElevator(elevator = new Elevator());
 	}
 
@@ -50,6 +53,26 @@ public class Building {
 
 	public void setElevator(Elevator elevator) {
 		this.elevator = elevator;
+	}
+
+	public int[] getFloorList() {
+		return floorList;
+	}
+
+	public void setFloorList(int[] floorList) {
+		this.floorList = floorList;
+	}
+
+	public int[] createUsFloorList(int numberOfFloors) {
+		//excludes 13th floor
+		floorList = new int[numberOfFloors];
+		for (int i = 0; i < floorList.length; i++) {
+			if (i >= 13) {
+				floorList[i] = i+1;
+			} else floorList[i] = i;
+
+		}
+		return floorList;
 	}
 
 }

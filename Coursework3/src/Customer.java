@@ -1,18 +1,18 @@
 
 public class Customer {
-	
+
 	private int currentFloor;
 	private int destinationFloor;
 	private int ID;
 	private boolean inElevator;
 	private boolean finish = false;
 	private static int customerCounter = 0;
-	
+
 	public Customer(){
 		ID = setID();
 		inElevator = false;
-		currentFloor = pickRandomFloor(SystemController.getNumberOfFloors());
-		destinationFloor = pickRandomFloor(SystemController.getNumberOfFloors());
+		currentFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
+		destinationFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		finish = isAtDestination();
 		System.out.println("ID: " + ID); // create getter
 		System.out.println("Starting at:" + getStartingFloor());
@@ -28,11 +28,11 @@ public class Customer {
 		System.out.println("Starting at:" + getStartingFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
-	
-	public int pickRandomFloor(int numberOfFloors){
-		return (int)(Math.random()*numberOfFloors);
+
+	public int pickRandomFloor(int[] floorList){
+		return floorList[(int)((Math.random()*floorList.length))];
 	}
-	
+
 	// Checks if startingFloor == destinationFloor
 	public boolean isAtDestination(){
 		if (currentFloor == destinationFloor)
@@ -40,21 +40,22 @@ public class Customer {
 		else
 			return false;
 	}
-	
+
 	public boolean elevatorArrivedAtStartingFloor(){
 		if (SystemController.getBuilding().getElevator().getCurrentFloor() == getStartingFloor() && !isFinished() && !isInElevator()){
+			//change this
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
 	public void setCurrentFloor(int currentFloor) {
-		// add random current floor from 0 to number of floors - 1 
+		// add random current floor from 0 to number of floors - 1
 		this.currentFloor = currentFloor;
 	}
 	public int getDestinationFloor() {
@@ -65,7 +66,7 @@ public class Customer {
 		return currentFloor;
 	}
 	public void setDestinationFloor(int destinationFloor) {
-		// add random destination floor from 0 to number of floors - 1 
+		// add random destination floor from 0 to number of floors - 1
 		this.destinationFloor = destinationFloor;
 	}
 	public int getId() {
@@ -87,7 +88,7 @@ public class Customer {
 	public void setInElevator(boolean inElevator) {
 		this.inElevator = inElevator;
 	}
-	
+
 	// to rename
 	public boolean isFinished() {
 		return finish;
@@ -96,17 +97,17 @@ public class Customer {
 	public void finish(boolean finish) {
 		this.finish = finish;
 	}
-	
+
 	public void getsIn(){
 		inElevator = true;
 	}
 	public void getsOut(){
 		finish(true);
-		inElevator = false;	
+		inElevator = false;
 	}
-	
+
 	public boolean getStatus(){
 		return inElevator;
 	}
-	
+
 }

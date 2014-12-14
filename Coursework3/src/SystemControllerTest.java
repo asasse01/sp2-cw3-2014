@@ -19,8 +19,7 @@ public class SystemControllerTest {
 	@Test
 	public void defaultStrategy() {
 
-		SystemController.generateBuilding();
-		SystemController.generateCustomers();
+		SystemController.setupSimulation();
 		Elevator e1 = SystemController.getBuilding().getElevator();
 
 		// test status
@@ -39,8 +38,7 @@ public class SystemControllerTest {
 	@Test
 	public void alternativeStrategy() {
 
-		SystemController.generateBuilding();
-		SystemController.generateCustomers();
+		SystemController.setupSimulation();
 		Elevator e1 = SystemController.getBuilding().getElevator();
 
 		// test status
