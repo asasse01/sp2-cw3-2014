@@ -22,9 +22,9 @@ public class SystemController {
 	public static void main(String[] args) {
 		requestSimulationInput();
 		setupSimulation();
-		startLog();
+		logData();
 		runSimulation();
-		endLog();
+		logData();
 
 	}
 
@@ -228,24 +228,19 @@ public class SystemController {
 		generateCustomers(numberOfCustomers);
 	}
 
-	public static void startLog() {
-
+	/**
+     * printLog logs customer data before and after simulation, and efficiency count after simulation
+     */
+	public static void logData() {
 		int id = 1;
 		for (Customer customer : building.getCustomerList()) {
 			SimulationLogger.log("Customer #" + id + " Starting at:" + customer.getCurrentFloor() + " Ending at:" + customer.getDestinationFloor());
 			id++;
 		}
-
-	}
-
-	public static void endLog() {
-
-		int id = 1;
-		for (Customer customer : building.getCustomerList()) {
-			SimulationLogger.log("Customer #" + id + " Ending at:" + customer.getDestinationFloor() + " Current floor:" + customer.getCurrentFloor());
-			id++;
+		if (simulationFinished) {
+			SimulationLogger.log("Efficiency " + getEfficiencyCounter());
 		}
-		SimulationLogger.log("Efficiency " + getEfficiencyCounter());
+
 	}
 
 }
