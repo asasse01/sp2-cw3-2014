@@ -49,19 +49,4 @@ public class CustomerTest {
 		}
 		SystemController.clearSystemData();
 	}
-
-	@Test
-	public void setId(){
-		SystemController.generateBuilding();
-		Customer c0 = new Customer();
-		Customer c1 = new Customer();
-		Customer c2 = new Customer();
-
-		assertEquals(1, c0.getId());
-		assertEquals(2, c1.getId());
-		assertEquals(3, c2.getId());
-
-		SystemController.clearSystemData();
-
-	}
 }

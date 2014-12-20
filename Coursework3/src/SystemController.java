@@ -55,7 +55,7 @@ public class SystemController {
 		while (!simulationFinished) {
 			loadAndUnload();
 			incrementCounter();
-			getBuilding().getElevator().move();
+			building.getElevator().move();
 			updateSimulationStatus();
 		}
 	}
@@ -70,7 +70,7 @@ public class SystemController {
 				loadAndUnload();
 				incrementCounter();
 			}
-			getBuilding().getElevator().move();
+			building.getElevator().move();
 			updateSimulationStatus();
 		}
 	}
@@ -91,7 +91,7 @@ public class SystemController {
      * loadAndUnload combines the load and unload methods from Elevator
      */
 	public static void loadAndUnload(){
-		getBuilding().getElevator().load(getBuilding().getCustomerList());
+		building.getElevator().load(building.getCustomerList());
 		building.getElevator().unload();
 	}
 

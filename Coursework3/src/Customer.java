@@ -12,29 +12,27 @@ public class Customer {
 
 	private int currentFloor;
 	private int destinationFloor;
-	private int ID;
 	private boolean inElevatorStatus;
 	private boolean completionStatus = false;
 	private static int customerCounter = 0;
 
 	public Customer(){
-		setID();
 		inElevatorStatus = false;
 		currentFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		destinationFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		completionStatus = isAtDestination();
-		System.out.println("ID: " + getId());
+		System.out.println("ID: " + customerCounter++);
 		System.out.println("Starting at:" + getCurrentFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
 
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
 		// instantiates a customer without random floors (for tests)
-		setID();
 		inElevatorStatus = false;
 		this.currentFloor = startingFloor;
 		this.destinationFloor = destinationFloor;
 		completionStatus = isAtDestination();
+		System.out.println("ID: " + customerCounter++);
 		System.out.println("Starting at:" + getCurrentFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
@@ -87,15 +85,6 @@ public class Customer {
 		this.destinationFloor = destinationFloor;
 	}
 
-	public int getId() {
-		return ID;
-	}
-
-	public void setID() {
-		setCustomerCounter();
-		ID = getCustomerCounter();
-	}
-
 	public int getCustomerCounter(){
 		return customerCounter;
 	}
@@ -125,14 +114,14 @@ public class Customer {
 	}
 
 	/**
-     * getsIn changes the customer status to indicate they are in the elevator
+     * hasEnteredElevator changes the customer status to indicate they are in the elevator
      */
 	public void hasEnteredElevator(){
 		inElevatorStatus = true;
 	}
 
 	/**
-     * getsOut changes the customer status to indicate they are out of the elevator
+     * hasLeftElevator changes the customer status to indicate they are out of the elevator
      */
 	public void hasLeftElevator(){
 		setCompletionStatus(true);
