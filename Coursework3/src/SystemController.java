@@ -189,15 +189,24 @@ public class SystemController {
 	public static void requestSimulationInput() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter the number of customers: ");
-		setNumberOfCustomers(in.nextInt());
+		String customerInput = in.next();
+		while (!customerInput.matches("^\\d+")) {
+			System.out.println("Wrong input, please try again: ");
+			customerInput = in.next();
+		}
+		setNumberOfCustomers(Integer.parseInt(customerInput));
 
 		System.out.println("Please enter the number of floors: ");
-		setNumberOfFloors(in.nextInt());
+		String floorInput = in.next();
+		while (!floorInput.matches("^\\d+")) {
+			System.out.println("Wrong input, please try again: ");
+			floorInput = in.next();
+		}
+		setNumberOfCustomers(Integer.parseInt(floorInput));
 
-		System.out.println("Run simulation with the alternative strategy? Type 'Y' to run the alternative, or 'N' to run default: ");
+		System.out.println("Run simulation with the alternative strategy? Type 'Y' to run the alternative, or anything else to run default: ");
 		strategy = in.next();
 		in.close();
-		// TODO error checking
 	}
 
 	/**
@@ -205,10 +214,9 @@ public class SystemController {
      */
 	public static void runSimulation() {
 		switch (strategy) {
-	    case "Y": alternativeStrategy();
-	    case "N": defaultStrategy();
+	    case "Y":
+	    case "y": alternativeStrategy();
 	    default: defaultStrategy();
-	    // TODO error checking
 		}
 	}
 
