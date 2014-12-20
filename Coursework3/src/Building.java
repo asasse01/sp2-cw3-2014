@@ -46,7 +46,6 @@ public class Building {
 	}
 
 	public void setNumberOfFloors() {
-		// default
 		this.numberOfFloors = DEFAULT;
 	}
 
@@ -80,7 +79,6 @@ public class Building {
      * @return floorList array which excludes the 13th floor
      */
 	public int[] createUsFloorList(int numberOfFloors) {
-		//excludes 13th floor
 		floorList = new int[numberOfFloors];
 		for (int i = 0; i < floorList.length; i++) {
 			if (i >= 13) {

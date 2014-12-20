@@ -85,7 +85,7 @@ public class Elevator {
 		for (Customer customer : customerList) {
 			// customer joins if they are on the same floor as elevator
 			if (customer.getCurrentFloor() == (this.getCurrentFloor())) {
-			    if (!customer.isInElevator() && !customer.isAtDestination()) {
+			    if (!customer.getInElevatorStatus() && !customer.isAtDestination()) {
 					loadList.add(customer);
 			    }
 			}
@@ -149,7 +149,7 @@ public class Elevator {
      * customerJoins adds a customer to the elevator registerList and changes their status
      */
 	public void customerJoins(Customer cust){
-		cust.getsIn();
+		cust.hasEnteredElevator();
 		registerList.add(cust);
 	}
 
@@ -157,7 +157,7 @@ public class Elevator {
      * customerLeaves removes a customer from the elevator registerList and changes their status
      */
 	public void customerLeaves(Customer cust){
-		cust.getsOut();
+		cust.hasLeftElevator();
 		registerList.remove(cust);
 	}
 

@@ -80,7 +80,7 @@ public class SystemController {
      */
 	public static void updateSimulationStatus() {
 		for (Customer customer : building.getCustomerList()) {
-			if (customer.isFinished()) {
+			if (customer.getCompletionStatus()) {
 				setSimulationStatus(true);
 			} else
 				setSimulationStatus(false);
@@ -101,7 +101,7 @@ public class SystemController {
      */
 	public static boolean loadNeeded(){
 		for (Customer customer : building.getCustomerList()){
-			if (customer.elevatorArrivedAtStartingFloor()) {
+			if (customer.hasCalledElevator()) {
 				return true;
 			}
 		}
@@ -128,6 +128,7 @@ public class SystemController {
 		setSimulationStatus(false);
 		building.getCustomerList().clear();
 		setEfficiencyCounter(0);
+		Customer.resetCustomerCounter();
 	}
 
 	static int getEfficiencyCounter() {
@@ -149,10 +150,6 @@ public class SystemController {
 	static void setNumberOfFloors(int numberOfFloors) {
 		SystemController.numberOfFloors = numberOfFloors;
 	}
-
-//	private static int getNumberOfCustomers() {
-//		return numberOfCustomers;
-//	}
 
 	private static void setNumberOfCustomers(int numberOfCustomers) {
 		SystemController.numberOfCustomers = numberOfCustomers;

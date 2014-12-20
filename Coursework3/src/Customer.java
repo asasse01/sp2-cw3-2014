@@ -13,29 +13,29 @@ public class Customer {
 	private int currentFloor;
 	private int destinationFloor;
 	private int ID;
-	private boolean inElevator;
-	private boolean finish = false;
+	private boolean inElevatorStatus;
+	private boolean completionStatus = false;
 	private static int customerCounter = 0;
 
 	public Customer(){
-		ID = setID();
-		inElevator = false;
+		setID();
+		inElevatorStatus = false;
 		currentFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		destinationFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
-		finish = isAtDestination();
-		System.out.println("ID: " + ID); // create getter
-		System.out.println("Starting at:" + getStartingFloor());
+		completionStatus = isAtDestination();
+		System.out.println("ID: " + getId());
+		System.out.println("Starting at:" + getCurrentFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
 
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
 		// instantiates a customer without random floors (for tests)
-		ID = setID();
-		inElevator = false;
+		setID();
+		inElevatorStatus = false;
 		this.currentFloor = startingFloor;
 		this.destinationFloor = destinationFloor;
-		finish = isAtDestination();
-		System.out.println("Starting at:" + getStartingFloor());
+		completionStatus = isAtDestination();
+		System.out.println("Starting at:" + getCurrentFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
 
@@ -46,7 +46,6 @@ public class Customer {
      */
 	public int pickRandomFloor(int[] floorList){
 		return floorList[(int)((Math.random()*floorList.length))];
-		// TODO return element not index
 	}
 
 	/**
@@ -61,17 +60,15 @@ public class Customer {
 	}
 
 	/**
-     * elevatorArrivedAtStartingFloor determines whether the elevator is on the starting floor
-     * @return boolean variable indicating whether the elevator is on the starting floor
+     * hasCalledElevator determines whether the elevator has arrived at the same floor as an awaiting customer
+     * @return boolean variable indicating whether the elevator has arrived at the same floor as an awaiting customer
      */
-	public boolean elevatorArrivedAtStartingFloor(){
-		if (SystemController.getBuilding().getElevator().getCurrentFloor() == getStartingFloor() && !isFinished() && !isInElevator()){
-			//TODO change this
+	public boolean hasCalledElevator(){
+		if (SystemController.getBuilding().getElevator().getCurrentFloor() == getCurrentFloor() && !getInElevatorStatus()){
 			return true;
 		} else {
 			return false;
 		}
-
 	}
 
 	public int getCurrentFloor() {
@@ -86,12 +83,6 @@ public class Customer {
 		return destinationFloor;
 	}
 
-	// just for test use
-	public int getStartingFloor(){
-		return currentFloor;
-		// TODO remove
-	}
-
 	public void setDestinationFloor(int destinationFloor) {
 		this.destinationFloor = destinationFloor;
 	}
@@ -100,10 +91,9 @@ public class Customer {
 		return ID;
 	}
 
-	public int setID() {
+	public void setID() {
 		setCustomerCounter();
-		return getCustomerCounter();
-		// TODO remove return
+		ID = getCustomerCounter();
 	}
 
 	public int getCustomerCounter(){
@@ -114,41 +104,39 @@ public class Customer {
 		customerCounter++;
 	}
 
-	public boolean isInElevator() {
-		return inElevator;
-		// TODO rename
+	public static void resetCustomerCounter(){
+		customerCounter = 0;
 	}
 
-	public void setInElevator(boolean inElevator) {
-		this.inElevator = inElevator;
-		// TODO rename
+	public boolean getInElevatorStatus() {
+		return inElevatorStatus;
 	}
 
-	public boolean isFinished() {
-		return finish;
+	public void setInElevatorStatus(boolean inElevatorStatus) {
+		this.inElevatorStatus = inElevatorStatus;
 	}
 
-	public void finish(boolean finish) {
-		this.finish = finish;
+	public boolean getCompletionStatus() {
+		return completionStatus;
+	}
+
+	public void setCompletionStatus(boolean completionStatus) {
+		this.completionStatus = completionStatus;
 	}
 
 	/**
      * getsIn changes the customer status to indicate they are in the elevator
      */
-	public void getsIn(){
-		inElevator = true;
+	public void hasEnteredElevator(){
+		inElevatorStatus = true;
 	}
 
 	/**
      * getsOut changes the customer status to indicate they are out of the elevator
      */
-	public void getsOut(){
-		finish(true);
-		inElevator = false;
-	}
-
-	public boolean getStatus(){
-		return inElevator;
+	public void hasLeftElevator(){
+		setCompletionStatus(true);
+		inElevatorStatus = false;
 	}
 
 }
