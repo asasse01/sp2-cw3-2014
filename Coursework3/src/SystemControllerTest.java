@@ -25,7 +25,7 @@ public class SystemControllerTest {
 		// test status
 		assertEquals(false, SystemController.getSimulationStatus());
 
-		e1.setDirection(1); // refactor
+		e1.setDirection(1);
 
 		SystemController.defaultStrategy();
 		assertEquals(true, SystemController.getSimulationStatus());
@@ -44,7 +44,7 @@ public class SystemControllerTest {
 		// test status
 		assertEquals(false, SystemController.getSimulationStatus());
 
-		e1.setDirection(1); // refactor
+		e1.setDirection(1);
 
 		SystemController.alternativeStrategy();
 		assertEquals(true, SystemController.getSimulationStatus());

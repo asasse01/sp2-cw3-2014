@@ -1,3 +1,12 @@
+/**
+ * @author Abby Sassel, Jacopo Scotti
+ * @since 08/11/2014
+ *
+ * Coursework3
+ * - Simulates a simple elevator.
+ * - Shows how different strategies can affect the efficiency of an elevator.
+ *
+ */
 
 public class Customer {
 
@@ -18,8 +27,9 @@ public class Customer {
 		System.out.println("Starting at:" + getStartingFloor());
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
-	// instantiate a customer without random floors (for tests)
+
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
+		// instantiates a customer without random floors (for tests)
 		ID = setID();
 		inElevator = false;
 		this.currentFloor = startingFloor;
@@ -29,11 +39,20 @@ public class Customer {
 		System.out.println("Ending at:" + getDestinationFloor());
 	}
 
+	/**
+     * pickRandomFloor randomly selects a floor element from the given floor list
+     * @param floorList array from which to randomly select and element
+     * @return floor element
+     */
 	public int pickRandomFloor(int[] floorList){
 		return floorList[(int)((Math.random()*floorList.length))];
+		// TODO return element not index
 	}
 
-	// Checks if startingFloor == destinationFloor
+	/**
+     * isAtDestination determines whether the customer is on their destination floor
+     * @return boolean variable indicating whether the customer is on their destinations floor
+     */
 	public boolean isAtDestination(){
 		if (currentFloor == destinationFloor)
 			return true;
@@ -41,9 +60,13 @@ public class Customer {
 			return false;
 	}
 
+	/**
+     * elevatorArrivedAtStartingFloor determines whether the elevator is on the starting floor
+     * @return boolean variable indicating whether the elevator is on the starting floor
+     */
 	public boolean elevatorArrivedAtStartingFloor(){
 		if (SystemController.getBuilding().getElevator().getCurrentFloor() == getStartingFloor() && !isFinished() && !isInElevator()){
-			//change this
+			//TODO change this
 			return true;
 		} else {
 			return false;
@@ -54,53 +77,71 @@ public class Customer {
 	public int getCurrentFloor() {
 		return currentFloor;
 	}
+
 	public void setCurrentFloor(int currentFloor) {
-		// add random current floor from 0 to number of floors - 1
 		this.currentFloor = currentFloor;
 	}
+
 	public int getDestinationFloor() {
 		return destinationFloor;
 	}
+
 	// just for test use
 	public int getStartingFloor(){
 		return currentFloor;
+		// TODO remove
 	}
+
 	public void setDestinationFloor(int destinationFloor) {
-		// add random destination floor from 0 to number of floors - 1
 		this.destinationFloor = destinationFloor;
 	}
+
 	public int getId() {
 		return ID;
 	}
+
 	public int setID() {
 		setCustomerCounter();
 		return getCustomerCounter();
+		// TODO remove return
 	}
+
 	public int getCustomerCounter(){
 		return customerCounter;
 	}
+
 	public void setCustomerCounter(){
 		customerCounter++;
 	}
+
 	public boolean isInElevator() {
 		return inElevator;
-	}
-	public void setInElevator(boolean inElevator) {
-		this.inElevator = inElevator;
+		// TODO rename
 	}
 
-	// to rename
+	public void setInElevator(boolean inElevator) {
+		this.inElevator = inElevator;
+		// TODO rename
+	}
+
 	public boolean isFinished() {
 		return finish;
 	}
-	// to rename
+
 	public void finish(boolean finish) {
 		this.finish = finish;
 	}
 
+	/**
+     * getsIn changes the customer status to indicate they are in the elevator
+     */
 	public void getsIn(){
 		inElevator = true;
 	}
+
+	/**
+     * getsOut changes the customer status to indicate they are out of the elevator
+     */
 	public void getsOut(){
 		finish(true);
 		inElevator = false;

@@ -1,8 +1,16 @@
+/**
+ * @author Abby Sassel, Jacopo Scotti
+ * @since 08/11/2014
+ *
+ * Coursework3
+ * - Simulates a simple elevator.
+ * - Shows how different strategies can affect the efficiency of an elevator.
+ *
+ */
+
 import java.util.ArrayList;
 
-
 public class Building {
-
 	private final int DEFAULT = 10;
 	private int numberOfFloors;
 	private int[] floorList;
@@ -26,6 +34,9 @@ public class Building {
 		return this.customerList;
 	}
 
+	/**
+     * addCustomer adds a Customer to the customerList
+     */
 	public void addCustomer(Customer c){
 		this.customerList.add(c);
 	}
@@ -63,6 +74,11 @@ public class Building {
 		this.floorList = floorList;
 	}
 
+	/**
+     * createUsFloorList instantiates an integer array in order to skip the 13th floor
+     * @param numberOfFloors number of floors in Building
+     * @return floorList array which excludes the 13th floor
+     */
 	public int[] createUsFloorList(int numberOfFloors) {
 		//excludes 13th floor
 		floorList = new int[numberOfFloors];

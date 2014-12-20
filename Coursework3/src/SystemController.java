@@ -20,26 +20,29 @@ public class SystemController {
 	private static String strategy;
 
 	public static void main(String[] args) {
-
 		requestSimulationInput();
 		setupSimulation();
 		runSimulation();
-
 		System.out.println("Efficiency " + getEfficiencyCounter());
 
 	}
 
-	// to remove
+	/**
+     * generateCustomers generates a number of customers specified by the static variable DEFAULT
+     */
 	public static void generateCustomers() {
-		// setting default number of customers
-        while (building.getCustomerList().size() != defaultNumberOfCustomers()) { // to do recursively
+        while (building.getCustomerList().size() != defaultNumberOfCustomers()) {
 			Customer customer = new Customer();
 			building.addCustomer(customer);
 		}
 	}
+
+	/**
+     * generateCustomers generates a number of customers specified by the 'number' argument entered
+     * @param number customers to generate
+     */
 	public static void generateCustomers(int number) {
-		// setting user specified number of customers
-		while (building.getCustomerList().size() != number) { // to do recursively
+		while (building.getCustomerList().size() != number) {
 			Customer customer = new Customer();
 			building.addCustomer(customer);
 		}
@@ -49,20 +52,17 @@ public class SystemController {
      * defaultStrategy runs the suggested "start at the bottom, go to the top, then go to the bottom" strategy
      */
 	public static void defaultStrategy() {
-
 		while (!simulationFinished) {
 			loadAndUnload();
 			incrementCounter();
-
 			getBuilding().getElevator().move();
-
 			updateSimulationStatus();
 		}
 	}
 
 	/**
      * alternativeStrategy uses the same "start at the bottom, go to the top, then go to the bottom" strategy
-     * condition added to only load Customer if the destination floor is in the direction of travel
+     * condition added to only run the load or unload methods if needed
      */
 	public static void alternativeStrategy() {
 		while (!simulationFinished) {
@@ -75,6 +75,9 @@ public class SystemController {
 		}
 	}
 
+	/**
+     * updateSimulationStatus determines whether every Customer is on destination floor and updates the simulation status
+     */
 	public static void updateSimulationStatus() {
 		for (Customer customer : building.getCustomerList()) {
 			if (customer.isFinished()) {
@@ -84,11 +87,18 @@ public class SystemController {
 		}
 	}
 
+	/**
+     * loadAndUnload combines the load and unload methods from Elevator
+     */
 	public static void loadAndUnload(){
 		getBuilding().getElevator().load(getBuilding().getCustomerList());
 		building.getElevator().unload();
 	}
 
+	/**
+     * loadNeeded determines the need to load one or more Customers into the Elevator
+     * @return boolean variable that can be used as a condition to invoke the load method
+     */
 	public static boolean loadNeeded(){
 		for (Customer customer : building.getCustomerList()){
 			if (customer.elevatorArrivedAtStartingFloor()) {
@@ -97,6 +107,11 @@ public class SystemController {
 		}
 		return false;
 	}
+
+	/**
+     * unloadNeeded determines the need to unload one or more Customers from the Elevator
+     * @return boolean variable that can be used as a condition to invoke the unload method
+     */
 	public static boolean unloadNeeded(){
 		for (Customer customer : building.getElevator().getCustomersInElevator()){
 			if (customer.isAtDestination()) {
@@ -106,6 +121,9 @@ public class SystemController {
 		return false;
 	}
 
+	/**
+     * clearSystemData clears all data associated with a simulation
+     */
 	public static void clearSystemData() {
 		setSimulationStatus(false);
 		building.getCustomerList().clear();
@@ -115,9 +133,11 @@ public class SystemController {
 	static int getEfficiencyCounter() {
 		return efficiencyCounter;
 	}
+
 	static void setEfficiencyCounter(int efficiencyCounter) {
 		SystemController.efficiencyCounter = efficiencyCounter;
 	}
+
 	public static Building getBuilding() {
 		return building;
 	}
@@ -125,35 +145,49 @@ public class SystemController {
 	static int getNumberOfFloors() {
 		return numberOfFloors;
 	}
+
 	static void setNumberOfFloors(int numberOfFloors) {
 		SystemController.numberOfFloors = numberOfFloors;
 	}
-	private static int getNumberOfCustomers() {
-		return numberOfCustomers;
-	}
+
+//	private static int getNumberOfCustomers() {
+//		return numberOfCustomers;
+//	}
+
 	private static void setNumberOfCustomers(int numberOfCustomers) {
 		SystemController.numberOfCustomers = numberOfCustomers;
 	}
+
 	public static void generateBuilding(int numberOfFloors){
 		building = new Building(getNumberOfFloors());
 	}
-	// default
+
 	public static void generateBuilding(){
 		building = new Building();
 	}
+
 	public static int defaultNumberOfCustomers() {
 		return DEFAULT;
 	}
+
 	public static boolean getSimulationStatus() {
 		return simulationFinished;
 	}
+
 	public static void setSimulationStatus(boolean status) {
 		SystemController.simulationFinished = status;
 	}
+
+	/**
+     * incrementCounter increments the efficiency counter by one unit
+     */
 	public static void incrementCounter() {
 		setEfficiencyCounter(getEfficiencyCounter() + 1);
 	}
 
+	/**
+     * requestSimulationInput requests from user all data required for the simulation to run
+     */
 	public static void requestSimulationInput() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter the number of customers: ");
@@ -165,17 +199,24 @@ public class SystemController {
 		System.out.println("Run simulation with the alternative strategy? Type 'Y' to run the alternative, or 'N' to run default: ");
 		strategy = in.next();
 		in.close();
+		// TODO error checking
 	}
 
+	/**
+     * runSimulation runs the simulation with either the default or alternative strategy
+     */
 	public static void runSimulation() {
 		switch (strategy) {
 	    case "Y": alternativeStrategy();
 	    case "N": defaultStrategy();
 	    default: defaultStrategy();
-	    //error checking
+	    // TODO error checking
 		}
 	}
 
+	/**
+     * setupSimulation generates the Customer and Building objects required for the simulation to run
+     */
 	public static void setupSimulation() {
 		generateBuilding(numberOfFloors);
 		generateCustomers(numberOfCustomers);
