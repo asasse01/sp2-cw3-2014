@@ -20,7 +20,6 @@ public class Building {
 	public Building(int numberOfFloors) {
 		setNumberOfFloors(numberOfFloors);
 		floorList = createUsFloorList(numberOfFloors);
-		System.out.println(getNumberOfFloors());
 		setElevator(elevator = new Elevator(numberOfFloors));
 	}
 

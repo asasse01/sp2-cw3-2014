@@ -21,9 +21,6 @@ public class Customer {
 		currentFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		destinationFloor = pickRandomFloor(SystemController.getBuilding().getFloorList());
 		completionStatus = isAtDestination();
-		System.out.println("ID: " + customerCounter++);
-		System.out.println("Starting at:" + getCurrentFloor());
-		System.out.println("Ending at:" + getDestinationFloor());
 	}
 
 	public Customer(int numberOfFloors, int startingFloor, int destinationFloor){
@@ -32,9 +29,8 @@ public class Customer {
 		this.currentFloor = startingFloor;
 		this.destinationFloor = destinationFloor;
 		completionStatus = isAtDestination();
-		System.out.println("ID: " + customerCounter++);
-		System.out.println("Starting at:" + getCurrentFloor());
-		System.out.println("Ending at:" + getDestinationFloor());
+		SimulationLogger.log("Customer ID: " + customerCounter++ + " Starting at:" + getCurrentFloor() + " Ending at:" + getDestinationFloor());
+
 	}
 
 	/**

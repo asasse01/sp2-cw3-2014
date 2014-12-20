@@ -22,8 +22,9 @@ public class SystemController {
 	public static void main(String[] args) {
 		requestSimulationInput();
 		setupSimulation();
+		startLog();
 		runSimulation();
-		System.out.println("Efficiency " + getEfficiencyCounter());
+		endLog();
 
 	}
 
@@ -217,6 +218,26 @@ public class SystemController {
 	public static void setupSimulation() {
 		generateBuilding(numberOfFloors);
 		generateCustomers(numberOfCustomers);
+	}
+
+	public static void startLog() {
+
+		int id = 1;
+		for (Customer customer : building.getCustomerList()) {
+			SimulationLogger.log("Customer #" + id + " Starting at:" + customer.getCurrentFloor() + " Ending at:" + customer.getDestinationFloor());
+			id++;
+		}
+
+	}
+
+	public static void endLog() {
+
+		int id = 1;
+		for (Customer customer : building.getCustomerList()) {
+			SimulationLogger.log("Customer #" + id + " Ending at:" + customer.getDestinationFloor() + " Current floor:" + customer.getCurrentFloor());
+			id++;
+		}
+		SimulationLogger.log("Efficiency " + getEfficiencyCounter());
 	}
 
 }
