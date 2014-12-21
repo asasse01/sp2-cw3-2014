@@ -12,21 +12,21 @@ public class CustomerTest {
 	@Test
 	public void getInAndOut(){
 		Customer c = new Customer(FLOORS, 3, 4);
-		assertEquals(false, c.getStatus());
-		assertEquals(false, c.isFinished());
-		c.getsIn();
-		assertEquals(true, c.getStatus());
-		c.getsOut();
-		assertEquals(false, c.getStatus());
-		assertEquals(true, c.isFinished());
+		assertEquals(false, c.getInElevatorStatus());
+		assertEquals(false, c.getCompletionStatus());
+		c.hasEnteredElevator();
+		assertEquals(true, c.getInElevatorStatus());
+		c.hasLeftElevator();
+		assertEquals(false, c.getInElevatorStatus());
+		assertEquals(true, c.getCompletionStatus());
 	}
 
 	@Test
 	public void randomFloors(){
 		SystemController.generateBuilding();
 		Customer c = new Customer();
-		assertTrue((c.getStartingFloor() < 10));
-		assertTrue((c.getStartingFloor() >= 0));
+		assertTrue((c.getCurrentFloor() < 10));
+		assertTrue((c.getCurrentFloor() >= 0));
 		assertTrue((c.getDestinationFloor() < 10));
 		assertTrue((c.getDestinationFloor() >= 0));
 		SystemController.clearSystemData();
@@ -35,7 +35,7 @@ public class CustomerTest {
 	@Test
 	public void startingFloorIsDestinationFloor(){
 		Customer c = new Customer(4, 3, 3);
-		assertEquals(true, c.isFinished());
+		assertEquals(true, c.getCompletionStatus());
 	}
 
 	@Test
